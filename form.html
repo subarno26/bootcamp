@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+	<link rel="stylesheet" type="text/css"href="design2.css">
+</head>
+<body>
+	<br>
+<span>TO THE NEW</span>
+<span style="float: right;">Home  Quick help</span>
+	<br>
+	<br>
+	<hr>
+	<div class="form">
+		<center>
+		<h3>Bug report</h3>
+		<form>
+			<p>Title:*</p>
+			<input type="text">
+			<br>
+			<p>Description*:</p>
+			<textarea></textarea>
+			<br>
+			<p>Operating System:</p>
+			<select class="formList">
+				<option>Windows XP</option>
+				<option>Windows 7</option>
+				<option>Linux</option>
+				<option>MacOS</option>
+			</select>
+			<p>Product:*</p>
+			<select class="formList">
+				<option>formoid</option>
+				<option>product 1</option>
+				<option>product 2</option>
+				
+			</select>
+			<p> Version:*</p>
+			<input type="text">
+			<br>
+			<p>License</p>
+			<input id="free" type="radio" name="free" value="free">
+			<label for="free"><span></span>Free</label>
+
+			<input id="business" type="radio" name="business" value="business" style="margin-left: 50%;">
+			<label for="business" style="margin-left: 50%;"><span></span>Business</label>
+
+			<p>Severity:</p>
+			<select class="formList" style="color: white; padding: 2%; border-width: 0px;">
+				<option>Critical</option>
+				<option>Less Critical</option>
+				<option>Highly Critical</option>
+				<option>Not Critical</option>
+			</select>
+
+			<p>Attachment: </p>
+			<input class="formFile" type="file" name="file">
+			
+		</form>
+		<div style="margin-top: 5px; background-color: #d9d9d9;">
+			<input type="submit" value="submit" name="submit" class="submitBtn">
+		</div>
+	</div>
+	</center>
+</body>
+</html>

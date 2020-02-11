@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+span{
+    color: blue;
+    font-size: 18px;
+}
+.form{
+    width: 380px;
+    border: 1px solid black;
+    margin-top: 50px;
+    margin-left: 400px;
+}
+h3{
+    background-color: gray;
+    margin-top: 0px;
+    padding-top: 2%;
+    padding-left: 5%;
+    height: 50px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: left;
+}
+form{
+    padding: 0% 5%;
+    text-align: left;
+}
+p{
+    font-size: 18px;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+    font-family: sans-serif;
+
+}
+input,textarea,select{
+margin: 1px;
+border-style: solid;
+border-radius: 5px;
+border-width: 2px;
+border-color: #d9d9d9;
+width: 100%;
+
+}
+.formList{
+margin: 1px;
+border-style: solid;
+border-radius: 5px;
+border-width: 2px;
+border-color: #d9d9d9;
+width: 100%;
+color: antiquewhite;
+background: #40e0d0;
+padding: 2%;
+}
+
+.formList option{
+    margin: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #d9d9d9;
+    width: 100%;
+    color: antiquewhite;
+    background: #40e0d0;
+    padding: 2%; 
+}
+
+input[type="radio"]{
+    display: none;
+}
+input[type="radio"] + label span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  vertical-align: middle;
+  border: 2px solid #d9d9d9;
+  border-radius: 50%;
+  padding: 2px;
+  margin:0 0px;
+  text-align: justify;
+}
+
+input[type="submit"]{
+    margin-left: 75%;
+    padding: 10px;
+    width: 20%;
+    height: 5%;
+    background-color: #40e0d0;
+    color: #fff;
+    border-style: solid;
+    border-radius:5px;
+    border-width: 0px
+}
