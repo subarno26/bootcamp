@@ -1,2 +1,0 @@
-include ':app', ':ex1'
-rootProject.name='AndroidSession1'
