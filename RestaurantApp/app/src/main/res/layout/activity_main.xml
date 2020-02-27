@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/foodie_app"
+        android:textColor="#ffff"
+        android:layout_marginTop="80dp"
+        android:textSize="40sp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:hint="Username"
+
+        android:textColor="#ffff"
+        android:textColorHint="#ffff" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:textColorHint="#ffff"
+        android:textColor="#ffff"
+        android:gravity="center"
+        android:ems="10"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:inputType="textPassword"
+        android:hint="Password" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffff"
+        android:layout_marginTop="18dp"
+        android:gravity="center"
+        android:text="@string/forgot_password"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="360dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:layout_height="60dp"
+        android:onClick="signin"
+        android:text="Sign in"
+        android:textColor="@color/colorAccent"
+        android:backgroundTint="#ffff"
+        android:background="@drawable/border"/>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffff"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/account"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffff"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="@string/sign_up"
+        android:textSize="18sp"/>
+
+
+</LinearLayout>
