@@ -22,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         editText = findViewById(R.id.editText);
-        text = editText.getText().toString();
 
     }
 
     public void writeFile(View view) {
         try {
+            text = editText.getText().toString();
             FileOutputStream fout = openFileOutput(FILE,MODE_PRIVATE);
             fout.write(text.getBytes());
             fout.close();
