@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -21,9 +22,9 @@ public class ListItem extends ListFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listitems,container,false);
         String[] listItemss = {"Apple","Samsung","OnePlus","Nokia"};
-        ListView list = view.findViewById(R.id.list);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,listItemss);
-        list.setAdapter(listViewAdapter);
+        //ListView list = view.findViewById(R.id.list);
+        ListAdapter listViewAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,listItemss);
+        setListAdapter(listViewAdapter);
         return view;
 
 
