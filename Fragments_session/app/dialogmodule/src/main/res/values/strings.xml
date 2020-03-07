@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">DialogModule</string>
-    <string name="display_dialog">Display Dialog</string>
-    <string name="sample_dialog_fragment">Sample Dialog Fragment</string>
-    <string name="logo">logo</string>
-    <string name="show_dialog_fragment">Show Dialog fragment</string>
-</resources>

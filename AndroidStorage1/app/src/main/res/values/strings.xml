@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidStorage1</string>
+    <string name="text_prompt">Enter Text here</string>
+    <string name="save">Save</string>
+    <string name="retrieve">Retrieve</string>
+    <string name="text_display">Text is displayed here</string>
+</resources>

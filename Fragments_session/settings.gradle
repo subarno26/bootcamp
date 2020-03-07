@@ -1,6 +1,0 @@
-rootProject.name='Fragments_session'
-include ':app'
-include ':app:dialog'
-include ':dialog'
-include ':app:dialogmodule'
-include ':fragmentsq4'
