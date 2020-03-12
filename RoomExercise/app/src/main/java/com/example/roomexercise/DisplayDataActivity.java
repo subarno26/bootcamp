@@ -63,7 +63,8 @@ public class DisplayDataActivity extends AppCompatActivity {
             protected void onPostExecute(List<EmployeeEntity> employeeEntities) {
                 super.onPostExecute(employeeEntities);
 
-                recyclerViewList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                recyclerViewList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                recyclerViewList.setLayoutManager(new wrapContentLinearLayoutManager(DisplayDataActivity.this,LinearLayoutManager.VERTICAL,false));
                 adapter = new Adapter(DisplayDataActivity.this, employeeEntities);
                 recyclerViewList.setAdapter(adapter);
 

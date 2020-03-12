@@ -14,6 +14,8 @@ public class AddActivity extends AppCompatActivity {
     private EditText nameEditText,addressEditText,mobileEditText;
     private String name,address,mobile;
     private Button addButton;
+    int id;
+    boolean IS_UPDATE = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,25 @@ public class AddActivity extends AppCompatActivity {
 
             }
         });
+        getIntentData();
 
+    }
 
+    private void getIntentData() {
+        if(getIntent().hasExtra("record"))
+        {
+            IS_UPDATE = true;
+            addButton.setText("UPDATE");
+            EmployeeEntity employeeModel =(EmployeeEntity) getIntent().getSerializableExtra("record");
+            nameEditText.setText(employeeModel.getName());
+            addressEditText.setText(employeeModel.getAddress());
+            mobileEditText.setText(employeeModel.getMobile());
+            id = employeeModel.getId();
+        }
+        else{
+            IS_UPDATE = false;
+            addButton.setText("ADD");
+        }
     }
 
     private void saveEmployee() {
@@ -44,9 +63,14 @@ public class AddActivity extends AppCompatActivity {
         address = addressEditText.getText().toString();
         mobile = mobileEditText.getText().toString();
 
-        SaveEmployeeRecordsTask saveEmployeeRecordsTask = new SaveEmployeeRecordsTask();
-        saveEmployeeRecordsTask.execute();
-
+        if (IS_UPDATE ==false) {
+            SaveEmployeeRecordsTask saveEmployeeRecordsTask = new SaveEmployeeRecordsTask();
+            saveEmployeeRecordsTask.execute();
+        }
+        else {
+            UpdateEmployeeRecordsTask updateEmployeeRecordsTask = new UpdateEmployeeRecordsTask();
+            updateEmployeeRecordsTask.execute();
+        }
 
     }
 
@@ -73,4 +97,35 @@ public class AddActivity extends AppCompatActivity {
             Toast.makeText(AddActivity.this,"Record Saved..",Toast.LENGTH_LONG).show();
         }
     }
+
+    class UpdateEmployeeRecordsTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            EmployeeEntity employeeModel = new EmployeeEntity();
+            employeeModel.setName(name);
+            employeeModel.setAddress(address);
+            employeeModel.setMobile(mobile);
+
+            employeeModel.setId(id);
+
+            //adding Model class to database
+
+            EmployeeDatabase.getInstance(getApplicationContext())
+                    .employeeDao().update(employeeModel);
+
+            return null;
+        }
+
+
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            finish();
+            startActivity(new Intent(getApplicationContext(), DisplayDataActivity.class));
+            Toast.makeText(getApplicationContext(), "Record Updated..", Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

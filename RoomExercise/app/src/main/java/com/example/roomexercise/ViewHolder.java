@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 public class ViewHolder extends RecyclerView.ViewHolder {
-    TextView nameTextView,addressTextView,mobileTextView;
-    Button openPoPMenu;
+    TextView nameTextView,addressTextView,mobileTextView,openPoPMenu;
 
     public ViewHolder(@NonNull View itemView) {
         super(itemView);

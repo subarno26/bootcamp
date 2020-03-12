@@ -1,11 +1,15 @@
 package com.example.roomexercise;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,10 +36,10 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        employeeEntity = employeeEntities.get(position);
-        holder.nameTextView.setText(employeeEntity.getName());
-        holder.addressTextView.setText(employeeEntity.getAddress());
-        holder.mobileTextView.setText(employeeEntity.getMobile());
+        //employeeEntity = employeeEntities.get(position);
+        holder.nameTextView.setText(employeeEntities.get(position).getName());
+        holder.addressTextView.setText(employeeEntities.get(position).getAddress());
+        holder.mobileTextView.setText(employeeEntities.get(position).getMobile());
         holder.openPoPMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,11 +49,17 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.delete:
-                                deleteRecord(employeeEntity.get(position), position);
-                                break;
                             case R.id.update:
+                                Intent intent = new Intent(context, AddActivity.class);
+                                intent.putExtra("record",employeeEntities.get(position));
+                                context.startActivity(intent);
                                 break;
+
+
+                            case R.id.delete:
+                                deleteRecord(employeeEntities.get(position), position);
+                                break;
+
                         }
                         return false;
                     }
@@ -62,6 +72,28 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     private void deleteRecord(final EmployeeEntity employeeEntity, final int position) {
+        class DeleteRecordTask extends AsyncTask<Void,Void,View> {
+            @Override
+            protected View doInBackground(Void... voids) {
+                EmployeeDatabase.getInstance(context).employeeDao().delete(employeeEntity);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(View view) {
+                try{
+                    employeeEntities.remove(position);
+                    notifyItemChanged(position);
+                    Toast.makeText(context,"Record Deleted..",Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+
+                }
+            }
+        }
+
+        DeleteRecordTask deleteRecordTask = new DeleteRecordTask();
+        deleteRecordTask.execute();
+
 
     }
 
