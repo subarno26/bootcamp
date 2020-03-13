@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,12 +15,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     Context context;
     List<EmployeeEntity> employeeEntities;
-    EmployeeEntity employeeEntity;
+
 
     public Adapter(Context context, List<EmployeeEntity> employeeEntities) {
         this.context = context;
@@ -50,7 +52,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.update:
-                                Intent intent = new Intent(context, AddActivity.class);
+                                    Intent intent = new Intent(context, AddActivity.class);
                                 intent.putExtra("record",employeeEntities.get(position));
                                 context.startActivity(intent);
                                 break;
@@ -86,7 +88,6 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
                     notifyItemChanged(position);
                     Toast.makeText(context,"Record Deleted..",Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
-
                 }
             }
         }

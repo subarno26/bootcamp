@@ -6,9 +6,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "Employee")
 
-public class EmployeeEntity {
+public class EmployeeEntity implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -26,7 +28,6 @@ public class EmployeeEntity {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
