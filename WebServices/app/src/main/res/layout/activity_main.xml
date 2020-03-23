@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:background="#009688"
+        android:textColor="#ffff"
+        android:id="@+id/glideButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:text="@string/glide"
+        android:onClick="glideDisplay"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:background="#FF5722"
+        android:textColor="#ffff"
+        android:id="@+id/HTTPButton"
+        android:layout_below="@id/glideButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:onClick="httpDisplay"
+        android:text="@string/http"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_below="@id/HTTPButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"/>
+
+    <TextView
+        android:id="@+id/textDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:text=""
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

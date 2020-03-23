@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WebServices</string>
+    <string name="http">HTTP</string>
+    <string name="glide">Glide</string>
+</resources>
