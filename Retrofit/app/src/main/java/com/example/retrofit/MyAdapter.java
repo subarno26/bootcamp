@@ -35,11 +35,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.name_text.setText(dataList.get(position).getName());
         holder.message_text.setText(dataList.get(position).getMessage());
-
-        Picasso.Builder builder = new Picasso.Builder(context);
-        builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(dataList.get(position).getProfileImage())
-                .into(holder.imageView);
+        String imageUrl = dataList.get(position).getProfileImage().replace("http","https");
+        Picasso.get().load(imageUrl).into(holder.imageView);
 
     }
 
@@ -58,4 +55,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             imageView = itemView.findViewById(R.id.imageView);
         }
     }
+
+
 }

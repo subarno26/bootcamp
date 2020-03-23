@@ -8,5 +8,5 @@ import retrofit2.http.GET;
 public interface GetDataService {
 
     @GET("posts.json")
-    Call<List<RetroModel>>getAllPosts();
+    Call<data>getAllPosts();
 }

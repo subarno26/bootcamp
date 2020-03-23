@@ -4,9 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#C1E6E3"
     tools:context=".MainActivity">
+    <Button
+        android:id="@+id/buttonRetrofit"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="downloadRetrofit"
+        android:background="#9C27B0"
+        android:textColor="#fff"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:text="Download with retrofit"/>
+    <Button
+        android:id="@+id/buttonHTTPS"
+        android:layout_width="wrap_content"
+        android:background="#F44336"
+        android:textColor="#fff"
+        android:onClick="downloadHTTPS"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/buttonRetrofit"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:text="Download with HTTPS"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/buttonHTTPS"
+        android:layout_marginTop="20dp"
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

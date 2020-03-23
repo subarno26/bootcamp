@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Retrofit</string>
+    <string name="name">NAME</string>
+    <string name="message">Message</string>
 </resources>
