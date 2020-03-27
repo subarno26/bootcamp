@@ -32,46 +32,7 @@
       <recent name="$PROJECT_DIR$/src/Exercise 1" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.Q6Kt">
-    <configuration name="Q1Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <module name="Kotlin_1" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="exercise1.Q1Kt" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Q2Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <module name="Kotlin_1" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="exercise1.Q2Kt" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Q4Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <module name="Kotlin_1" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="exercise1.Q4Kt" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Kotlin.Q8Kt">
     <configuration name="Q5Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <module name="Kotlin_1" />
       <option name="VM_PARAMETERS" />
@@ -79,7 +40,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="exercise1.Q5Kt" />
+      <option name="MAIN_CLASS_NAME" value="exercise2.Q5Kt" />
       <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -92,7 +53,46 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="exercise1.Q6Kt" />
+      <option name="MAIN_CLASS_NAME" value="exercise2.Q6Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Q7Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <module name="Kotlin_1" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="exercise2.Q7Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Q8Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <module name="Kotlin_1" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="exercise2.Q8Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentsKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <module name="Kotlin_1" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="exercise2.Q4.StudentsKt" />
       <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -100,11 +100,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Q8Kt" />
+        <item itemvalue="Kotlin.Q7Kt" />
         <item itemvalue="Kotlin.Q6Kt" />
-        <item itemvalue="Kotlin.Q4Kt" />
-        <item itemvalue="Kotlin.Q1Kt" />
-        <item itemvalue="Kotlin.Q2Kt" />
         <item itemvalue="Kotlin.Q5Kt" />
+        <item itemvalue="Kotlin.StudentsKt" />
       </list>
     </recent_temporary>
   </component>
@@ -126,22 +126,22 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="278" y="58" width="800" height="677" key="#Project_Structure/0.27.1366.741@0.27.1366.741" timestamp="1585046314879" />
-    <state width="1320" height="175" key="GridCell.Tab.0.bottom" timestamp="1585130229430">
+    <state width="1320" height="175" key="GridCell.Tab.0.bottom" timestamp="1585315383004">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1585130229430" />
-    <state width="1320" height="175" key="GridCell.Tab.0.center" timestamp="1585130229428">
+    <state width="1320" height="175" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1585315383004" />
+    <state width="1320" height="175" key="GridCell.Tab.0.center" timestamp="1585315383003">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1585130229428" />
-    <state width="1320" height="175" key="GridCell.Tab.0.left" timestamp="1585130229427">
+    <state width="1320" height="175" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1585315383003" />
+    <state width="1320" height="175" key="GridCell.Tab.0.left" timestamp="1585315383003">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1585130229427" />
-    <state width="1320" height="175" key="GridCell.Tab.0.right" timestamp="1585130229429">
+    <state width="1320" height="175" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1585315383003" />
+    <state width="1320" height="175" key="GridCell.Tab.0.right" timestamp="1585315383004">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1585130229429" />
+    <state width="1320" height="175" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1585315383004" />
     <state x="339" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1585047358383">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
