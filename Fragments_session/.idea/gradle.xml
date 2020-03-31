@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/app/dialogmodule" />
             <option value="$PROJECT_DIR$/dialog" />
             <option value="$PROJECT_DIR$/fragmentsq4" />
+            <option value="$PROJECT_DIR$/preferencemodule" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

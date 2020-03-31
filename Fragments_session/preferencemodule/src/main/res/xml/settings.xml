@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:title="Username"
+        android:key="user_name"
+        android:summary="Set your username"/>
+    <SwitchPreference
+        android:title="Enable notifications"
+        android:key="switch_notification"
+        android:summary="Notifications for the app"/>
+    <CheckBoxPreference
+        android:title="Checkbox"
+        android:key="checkbox_pref"
+        android:summary="Sample Checkbox"
+        android:defaultValue="true" />
+    <ListPreference
+        android:title="Age"
+        android:summary="Enter age from the choices below"
+        android:entries="@array/age_list"
+        android:entryValues="@array/age_list"
+        />
+    <ListPreference
+        android:title="City"
+        android:summary="Choose a city from the choices provided"
+        android:entries="@array/cities_list"
+        android:entryValues="@array/cities_list"
+        />
+</PreferenceScreen>

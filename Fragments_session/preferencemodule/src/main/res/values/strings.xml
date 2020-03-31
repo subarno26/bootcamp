@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">preferenceModule</string>
+
+    <string-array name="age_list">
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+    </string-array>
+
+    <string-array name="cities_list">
+        <item>Delhi</item>
+        <item>Chandigarh</item>
+        <item>Lucknow</item>
+        <item>Jaipur</item>
+        <item>Haryana</item>
+        <item>Uttar pradesh</item>
+    </string-array>
+</resources>
