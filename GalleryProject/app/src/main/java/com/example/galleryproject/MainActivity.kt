@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this,GalleryActivity::class.java))
                         val user = auth.currentUser
                         //updateUI(user)
                     } else {
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         val manager = supportFragmentManager
         val transact = manager.beginTransaction()
         val sFragment = Signup()
-        transact.add(R.id.container,sFragment)
+        transact.replace(R.id.container,sFragment)
         transact.commit()
     }
 
