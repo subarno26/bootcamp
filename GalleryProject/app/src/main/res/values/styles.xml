@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="customFab">
+        <item name="android:background">#FF5722</item>
+        <item name="android:textColor">#ffff</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
 </resources>

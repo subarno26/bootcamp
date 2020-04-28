@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.galleryproject.ViewModel.Viewmodel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.profile.view.*
 import java.util.*
 
 class Profile : Fragment() {
+    private lateinit var viewmodel: Viewmodel
     private lateinit var storageRef:StorageReference
     private lateinit var auth: FirebaseAuth
     private lateinit var db:FirebaseFirestore
@@ -30,7 +33,7 @@ class Profile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view:View = inflater.inflate(R.layout.profile,container,false)
-        UserDetails()
+        userDetails()
         view.logoutBtn.setOnClickListener {
             auth = FirebaseAuth.getInstance()
             auth.signOut()
@@ -65,49 +68,23 @@ class Profile : Fragment() {
     }
 
     private fun updateImage() {
-        val filename = UUID.randomUUID().toString()
-        storageRef = FirebaseStorage.getInstance().getReference("/images/$filename")
-        storageRef.putFile(uri).addOnSuccessListener {
-           // Toast.makeText(context, "Image uploaded successfully!", Toast.LENGTH_SHORT).show()
-            storageRef.downloadUrl.addOnSuccessListener {
-                Log.d("Location", "$it")
-                updateDatbase(it.toString())
-            }
-        }.addOnFailureListener{
-            Log.e("Unable to upload","$it")
-        }
-
+        viewmodel.updateUserImage(uri)
+        imageProgress.dismiss()
     }
 
 
 
-    private fun updateDatbase(newImage: String) {
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
-        val docID = auth.uid.toString()
-        db.collection("UsersDetails").document(docID).update("imageID",newImage).addOnSuccessListener {
-            imageProgress.dismiss()
-            Toast.makeText(context,"Profile updated successfully",Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener{
-            Log.e("Failure","$it")
-            Toast.makeText(context,"Unable to update profile, please try again later.",Toast.LENGTH_SHORT).show()
-        }
-    }
+
 
     private lateinit var progress:ProgressDialog
-    private fun UserDetails() {
+    private fun userDetails() {
         progress = ProgressDialog(context)
         progress.setTitle("Fetching user data")
         progress.setMessage("Please wait")
         progress.show()
-
-
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
-        val documentID = auth.uid.toString()
-        Log.e("USERID",documentID)
-        val docref = db.collection("UsersDetails").document(documentID)
-        docref.get().addOnSuccessListener { document ->
+        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+        viewmodel.getUserDetails()
+        .addOnSuccessListener { document ->
             if (document != null) {
                 Log.e("DATA", "DocumentSnapshot data: ${document.data}")
                 username.text = document.getString("username")

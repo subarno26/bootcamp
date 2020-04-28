@@ -7,10 +7,13 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.example.galleryproject.ViewModel.Viewmodel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var viewmodel: Viewmodel
     private lateinit var auth: FirebaseAuth
     private lateinit var email:String
     private lateinit var password:String
@@ -22,9 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        // updateUI(currentUser)
         if (currentUser != null){
             startActivity(Intent(this,GalleryActivity::class.java))
         }
@@ -51,25 +52,18 @@ class MainActivity : AppCompatActivity() {
         if (!validate()){
             return
         }
-        // Log.d("WORKING",email)
-        //auth.signInWithEmailAndPassword(email,password).addOnCompleteListener()
-        auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this,GalleryActivity::class.java))
-                        val user = auth.currentUser
-                        //updateUI(user)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(this,"Email id and password do not match",Toast.LENGTH_SHORT).show()
-                        Log.e("ERROR", "signInWithEmail:failure", task.exception)
-                        // ...
-                    }
+        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+        viewmodel.login(email,password).addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,GalleryActivity::class.java))
+                } else {
+                    Toast.makeText(this,"Email id and password do not match",Toast.LENGTH_SHORT).show()
+                    Log.e("ERROR", "signInWithEmail:failure", task.exception)
 
-                    // ...
                 }
+            }
+
 
 
     }
