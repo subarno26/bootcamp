@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 class ImageModel {
     val downloadURL: String

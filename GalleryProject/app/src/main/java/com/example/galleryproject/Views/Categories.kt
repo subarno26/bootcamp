@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,7 +35,7 @@ class Categories:Fragment() {
         categoryList = arrayListOf()
         viewmodel =ViewModelProvider(this).get(Viewmodel::class.java)
         viewmodel.loadData().observe(viewLifecycleOwner, Observer {
-            cAdapter = Adapter(it,context)
+            cAdapter = Adapter(it, context)
             recyclerView.adapter = cAdapter
 
         })

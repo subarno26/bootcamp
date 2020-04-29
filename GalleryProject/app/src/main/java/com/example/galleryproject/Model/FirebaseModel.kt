@@ -2,8 +2,10 @@ package com.example.galleryproject.Model
 
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import com.example.galleryproject.*
+import com.example.galleryproject.Views.AddCategoryModel
+import com.example.galleryproject.Views.ImageModel
+import com.example.galleryproject.Views.UserModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -12,9 +14,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.withContext
 import java.util.*
-import kotlin.coroutines.coroutineContext
 
 class FirebaseModel {
     private val auth = FirebaseAuth.getInstance()
@@ -66,7 +66,8 @@ class FirebaseModel {
         Log.e("IMAGE URI", imageID)
         firestore = FirebaseFirestore.getInstance()
         val collection = firestore.collection("UsersDetails").document(currentUID)
-        val userModel = UserModel(sName, sEmail, imageID)
+        val userModel =
+            UserModel(sName, sEmail, imageID)
         collection.set(userModel).addOnSuccessListener {
             Log.e("FIREBASE MODEL ", "successful")
             //Toast.makeText(MainActivity(), "stored in db", Toast.LENGTH_SHORT).show()
@@ -101,7 +102,10 @@ class FirebaseModel {
     private fun uploadCategory(categoryName: String, categoryImageID: String) {
         val userId = auth.uid.toString()
 
-        val categoryInfo = AddCategoryModel(categoryName,categoryImageID)
+        val categoryInfo = AddCategoryModel(
+            categoryName,
+            categoryImageID
+        )
 
         firestore.collection("UsersDetails").document(userId).collection("Categories").document(categoryName)
             .set(categoryInfo)
@@ -141,7 +145,11 @@ class FirebaseModel {
         val calendar = Calendar.getInstance()
         val timestamp = calendar.timeInMillis.toString()
 
-        val imageInfo = ImageModel(file,timestamp,categoryName)
+        val imageInfo = ImageModel(
+            file,
+            timestamp,
+            categoryName
+        )
 
 
         firestore.collection("UsersDetails").document(userId)
@@ -184,6 +192,10 @@ class FirebaseModel {
         return docref
     }
 
+    fun logout(){
+        auth.signOut()
+    }
+
     fun updateUserImage(uri: Uri){
         val filename = UUID.randomUUID().toString()
         storageRef = FirebaseStorage.getInstance().getReference("/images/$filename")
@@ -215,6 +227,8 @@ class FirebaseModel {
         return storageRef
 
     }
+
+
 
 }
 

@@ -1,26 +1,21 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_gallery.*
 import kotlinx.android.synthetic.main.add_categories.*
 import kotlinx.android.synthetic.main.add_categories.view.*
-import java.util.*
 
 class AddCategory :Fragment(){
     private lateinit var viewmodel: Viewmodel

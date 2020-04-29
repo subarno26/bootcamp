@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null){
-            startActivity(Intent(this,GalleryActivity::class.java))
+            startActivity(Intent(this,
+                GalleryActivity::class.java))
         }
     }
 
@@ -56,7 +58,8 @@ class MainActivity : AppCompatActivity() {
         viewmodel.login(email,password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this,GalleryActivity::class.java))
+                    startActivity(Intent(this,
+                        GalleryActivity::class.java))
                 } else {
                     Toast.makeText(this,"Email id and password do not match",Toast.LENGTH_SHORT).show()
                     Log.e("ERROR", "signInWithEmail:failure", task.exception)

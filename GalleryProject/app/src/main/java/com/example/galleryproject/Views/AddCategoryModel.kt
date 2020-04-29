@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 class AddCategoryModel {
     val categoryName: String

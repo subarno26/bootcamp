@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.content.Intent
 import android.net.Uri
@@ -11,10 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.signup.*
 import kotlinx.android.synthetic.main.signup.view.*
 
@@ -39,7 +38,8 @@ class Signup : Fragment(){
             }
             else {
                 if (viewmodel.signup(sName,sEmail,sPass,uri)) {
-                    val intent = Intent(context,GalleryActivity::class.java)
+                    val intent = Intent(context,
+                        GalleryActivity::class.java)
                     startActivity(intent)
                     Toast.makeText(context,"Sign up successful",Toast.LENGTH_SHORT).show()
                 }

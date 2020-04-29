@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.content.Context
 import android.content.Intent
@@ -18,14 +18,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.category_images.view.*
 import java.io.ByteArrayOutputStream
-import java.util.*
 import kotlin.collections.ArrayList
 
 class Images : Fragment() {
@@ -89,7 +88,10 @@ class Images : Fragment() {
 
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
         viewmodel.loadImages(categoryName).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            imagesAdapter = ImagesAdapter(it,context)
+            imagesAdapter =
+                ImagesAdapter(context)
+            imagesAdapter.listChange(it)
+            //imagesAdapter.notifyDataSetChanged()
             recycler.adapter = imagesAdapter
         })
     }

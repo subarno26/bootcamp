@@ -11,10 +11,11 @@ class Repository (){
     fun signup(Name:String, Email:String,Password:String, uri: Uri?):Boolean = firebaseModel.signup(Name, Email,Password,uri)
     fun loadData():CollectionReference = firebaseModel.loadData()
     fun addCategory(uri: Uri,categoryName: String):Boolean = firebaseModel.addCategory(uri,categoryName)
-    fun loadImages(categoryName: String):CollectionReference = firebaseModel.loadImages(categoryName)
+    fun loadImages(categoryName: String) = firebaseModel.loadImages(categoryName)
     fun storeImages(categoryName: String,uri: Uri) = firebaseModel.storeImages(categoryName,uri)
     fun deleteImage(category:String,timestamp:String):Boolean = firebaseModel.deleteImage(category, timestamp)
     fun getUserDetails() = firebaseModel.getUserDetails()
     fun updateUserImage(uri: Uri) = firebaseModel.updateUserImage(uri)
     fun getTimeline() :StorageReference = firebaseModel.getTimeline()
+    fun logout() = firebaseModel.logout()
 }

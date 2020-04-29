@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -11,15 +11,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.profile.*
 import kotlinx.android.synthetic.main.profile.view.*
-import java.util.*
 
 class Profile : Fragment() {
     private lateinit var viewmodel: Viewmodel
@@ -33,11 +32,12 @@ class Profile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view:View = inflater.inflate(R.layout.profile,container,false)
+        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
         userDetails()
         view.logoutBtn.setOnClickListener {
-            auth = FirebaseAuth.getInstance()
-            auth.signOut()
-            startActivity(Intent(context,MainActivity::class.java))
+            viewmodel.logout()
+            startActivity(Intent(context,
+                MainActivity::class.java))
         }
 
         view.uploadProfile.setOnClickListener{
@@ -82,7 +82,6 @@ class Profile : Fragment() {
         progress.setTitle("Fetching user data")
         progress.setMessage("Please wait")
         progress.show()
-        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
         viewmodel.getUserDetails()
         .addOnSuccessListener { document ->
             if (document != null) {

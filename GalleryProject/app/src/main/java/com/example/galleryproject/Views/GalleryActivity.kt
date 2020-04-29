@@ -1,11 +1,10 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
+import com.example.galleryproject.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_gallery.*
 
@@ -26,28 +25,32 @@ class GalleryActivity : AppCompatActivity() {
             when(item.itemId){
 
                 R.id.profile_item -> {
-                    val profileFragment = Profile()
+                    val profileFragment =
+                        Profile()
                     supportFragmentManager.
                         beginTransaction().
                         replace(R.id.container,profileFragment)
                         .commit()
                 }
                 R.id.gallery_item -> {
-                    val categoryFragment = Categories()
+                    val categoryFragment =
+                        Categories()
                     supportFragmentManager.
                         beginTransaction().
                         replace(R.id.container,categoryFragment)
                         .commit()
                 }
                 R.id.add_item -> {
-                    val addFragment = AddCategory()
+                    val addFragment =
+                        AddCategory()
                     supportFragmentManager.
                         beginTransaction().
                         replace(R.id.container,addFragment)
                         .commit()
                 }
                 R.id.timeline_item -> {
-                    val timelineFragment = Timeline()
+                    val timelineFragment =
+                        Timeline()
                     supportFragmentManager.
                         beginTransaction().
                         replace(R.id.container,timelineFragment)
@@ -61,7 +64,7 @@ class GalleryActivity : AppCompatActivity() {
     fun logout(view: View) {
         auth = FirebaseAuth.getInstance()
         auth.signOut()
-        startActivity(Intent(this,MainActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
 

@@ -1,8 +1,6 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class Timeline:Fragment() {
@@ -39,7 +36,8 @@ class Timeline:Fragment() {
         val userID = auth.uid
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
         viewmodel.getTimeline().observe(viewLifecycleOwner, Observer {
-            tAdapter = TimelineAdapter(it,context)
+            tAdapter =
+                TimelineAdapter(it, context)
             recyclerView.adapter = tAdapter
         })
 

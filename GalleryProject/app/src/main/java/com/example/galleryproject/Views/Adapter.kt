@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.content.Context
 import android.os.Bundle
@@ -9,22 +9,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.galleryproject.R
 import com.squareup.picasso.Picasso
 
 class Adapter(val categoryList: List<AddCategoryModel>, val mContext: Context?) : RecyclerView.Adapter<Adapter.MyHolder>() {
 
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        init {
-//            itemView.setOnClickListener{TODO("Not yet implemented")
-//                Log.e("ItemClick","CLICKED")
-//            }
-//        }
+
         var categoryImage: ImageView = itemView.findViewById(R.id.cImage)
         var categoryName:TextView = itemView.findViewById(R.id.categoryName)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        return MyHolder(LayoutInflater.from(mContext).inflate(R.layout.item_layout,parent,false))
+        return MyHolder(
+            LayoutInflater.from(
+                mContext
+            ).inflate(
+                R.layout.item_layout,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {

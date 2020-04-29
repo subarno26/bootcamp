@@ -5,12 +5,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.galleryproject.*
 import com.example.galleryproject.Model.Repository
+import com.example.galleryproject.Views.AddCategoryModel
+import com.example.galleryproject.Views.ImageModel
+import com.example.galleryproject.Views.TimelineModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.firestore.DocumentSnapshot
-import java.sql.Time
 
 class Viewmodel : ViewModel(){
     private val repository = Repository()
@@ -18,34 +19,37 @@ class Viewmodel : ViewModel(){
     private var mImageList : MutableLiveData<List<ImageModel>> = MutableLiveData()
     private var mTimeList: MutableLiveData<List<TimelineModel>> = MutableLiveData()
     private lateinit var tList:List<TimelineModel>
+    var imageList:MutableList<ImageModel> = mutableListOf()
+    val categoryList = mutableListOf<AddCategoryModel>()
     fun login(email:String, password:String): Task<AuthResult> {
         return repository.login(email, password)
     }
 
     fun signup(Name:String, Email:String, Password:String, uri: Uri?): Boolean {
         return repository.signup(Name, Email, Password, uri)
+
     }
 
     fun loadData():LiveData<List<AddCategoryModel>>{
-        repository.loadData().get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val categoryList = mutableListOf<AddCategoryModel>()
-                for (doc: DocumentSnapshot in task.result!!) {
-                    val fetchedCategory = AddCategoryModel(
-                        doc.getString("categoryName")!!,
-                        doc.getString("categoryImage")!!
-                    )
-                    categoryList.add(fetchedCategory)
-                    //addData(categoryList)
-                }
-
-                mCategoryList.value = categoryList
-
-
-            } else {
-                Log.e("error", "$task.exception")
-
+        if (categoryList.size>0){
+            categoryList.clear()
+        }
+        repository.loadData().addSnapshotListener{ snapshot, exception ->
+            if (exception!=null){
+                return@addSnapshotListener
             }
+            if (snapshot!=null){
+                for(doc in snapshot.documentChanges){
+                    val fetchedCategory =
+                        AddCategoryModel(
+                            doc.document.getString("categoryName")!!,
+                            doc.document.getString("categoryImage")!!
+                        )
+                    categoryList.add(fetchedCategory)
+                }
+            }
+            mCategoryList.value = categoryList
+
         }
         return mCategoryList
     }
@@ -55,12 +59,15 @@ class Viewmodel : ViewModel(){
     }
 
     fun loadImages(categoryName: String):LiveData<List<ImageModel>>{
+        if (imageList.size>0){
+            imageList.clear()
+        }
         repository.loadImages(categoryName).addSnapshotListener{snapshot, exception ->
             if (exception != null){
                 return@addSnapshotListener
             }
             if (snapshot!=null){
-                val imageList:MutableList<ImageModel> = mutableListOf()
+
                 for(doc in snapshot.documentChanges){
 //                        val imageModel = doc.document.toObject(ImageModel::class.java)
                     val fetched = ImageModel(
@@ -69,8 +76,12 @@ class Viewmodel : ViewModel(){
                         doc.document.getString("categoryName")!!
                     )
                     imageList.add(fetched)
+
+
                 }
                 mImageList.value = imageList
+                Log.i("List of images",imageList.toString())
+                Log.i("Live data list ", mImageList.toString())
             }
 
         }
@@ -88,6 +99,10 @@ class Viewmodel : ViewModel(){
         return repository.getUserDetails()
     }
 
+    fun logout(){
+        return repository.logout()
+    }
+
 
     fun updateUserImage(uri: Uri){
         return repository.updateUserImage(uri)
@@ -98,11 +113,12 @@ class Viewmodel : ViewModel(){
             val timeList = mutableListOf<TimelineModel>()
             for (i in it.items) {
                 i.metadata.addOnSuccessListener {
-                    val timelineModel = TimelineModel(
-                        i.downloadUrl,
-                        it.creationTimeMillis
+                    val timelineModel =
+                        TimelineModel(
+                            i.downloadUrl,
+                            it.creationTimeMillis
 
-                    )
+                        )
 
                     timeList.add(timelineModel)
 
@@ -116,4 +132,6 @@ class Viewmodel : ViewModel(){
         }
         return mTimeList
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.galleryproject
+package com.example.galleryproject.Views
 
 import android.content.Context
 import android.os.Bundle
@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.galleryproject.R
 import com.squareup.picasso.Picasso
 
-class ImagesAdapter(val imageList: List<ImageModel>, val mContext: Context?) : RecyclerView.Adapter<ImagesAdapter.ImageHolder>() {
-
+class ImagesAdapter(val mContext: Context?) : RecyclerView.Adapter<ImagesAdapter.ImageHolder>() {
+    private lateinit var mImageList: List<ImageModel>
     class ImageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var cImage : ImageView = itemView.findViewById(R.id.catImages)
     }
@@ -22,17 +23,24 @@ class ImagesAdapter(val imageList: List<ImageModel>, val mContext: Context?) : R
     }
 
     override fun getItemCount(): Int {
-        return imageList.size
+        //Log.i("Imagelist size",imageList.size.toString())
+        return mImageList.size
+
+    }
+
+    fun listChange(images: List<ImageModel>){
+        mImageList = images
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
-        Picasso.get().load(imageList.get(position).downloadURL).into(holder.cImage)
+        Picasso.get().load(mImageList[position].downloadURL).into(holder.cImage)
         holder.itemView.setOnClickListener{
             val expandedImage = ExpandedImage()
             val bundle = Bundle()
-            bundle.putString("ImageURL",imageList[position].downloadURL)
-            bundle.putString("CategoryName",imageList[position].CategoryName)
-            bundle.putString("TimeStamp",imageList[position].Timestamp)
+            bundle.putString("ImageURL",mImageList[position].downloadURL)
+            bundle.putString("CategoryName",mImageList[position].CategoryName)
+            bundle.putString("TimeStamp",mImageList[position].Timestamp)
             val activity: AppCompatActivity = it.context as AppCompatActivity
             val transaction = activity.supportFragmentManager.beginTransaction()
             expandedImage.arguments = bundle
