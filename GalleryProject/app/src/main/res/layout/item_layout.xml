@@ -6,11 +6,16 @@
     android:padding="5dp"
     android:layout_margin="5dp">
 
+    <ProgressBar
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/borderColor"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/cImage"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/landscape"
         android:layout_centerHorizontal="true"/>
     <TextView
         android:id="@+id/categoryName"

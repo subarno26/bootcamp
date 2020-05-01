@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -37,14 +37,14 @@ class ExpandedImage : Fragment() {
         Picasso.get().load(mImage).into(view.expandedImageView)
 
         view.deleteImage.setOnClickListener {
-            deleteImage()
+            deleteImage(mImage.toString())
         }
         return view
     }
 
-    private fun deleteImage() {
+    private fun deleteImage(imageUrl: String) {
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
-        if (viewmodel.deleteImage(category,timeStamp)){
+        if (viewmodel.deleteImage(imageUrl,category,timeStamp)){
             Toast.makeText(context,"Deleted successfully",Toast.LENGTH_SHORT).show()
             val manager = activity!!.supportFragmentManager
             manager.popBackStack()

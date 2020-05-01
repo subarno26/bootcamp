@@ -1,10 +1,14 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.galleryproject.R
+import com.example.galleryproject.Views.Fragments.AddCategory
+import com.example.galleryproject.Views.Fragments.Categories
+import com.example.galleryproject.Views.Fragments.Profile
+import com.example.galleryproject.Views.Fragments.Timeline
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_gallery.*
 
@@ -14,7 +18,8 @@ class GalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
 
-        val categoryFragment = Categories()
+        val categoryFragment =
+            Categories()
         supportFragmentManager.
             beginTransaction().
             replace(R.id.container,categoryFragment)

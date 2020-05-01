@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
+import com.example.galleryproject.Views.Activity.GalleryActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.signup.*
 import kotlinx.android.synthetic.main.signup.view.*

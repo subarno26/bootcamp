@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -37,7 +37,10 @@ class Timeline:Fragment() {
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
         viewmodel.getTimeline().observe(viewLifecycleOwner, Observer {
             tAdapter =
-                TimelineAdapter(it, context)
+                TimelineAdapter(
+                    it,
+                    context
+                )
             recyclerView.adapter = tAdapter
         })
 

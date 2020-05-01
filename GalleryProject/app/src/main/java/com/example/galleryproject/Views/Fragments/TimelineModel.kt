@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.net.Uri
 import com.google.android.gms.tasks.Task

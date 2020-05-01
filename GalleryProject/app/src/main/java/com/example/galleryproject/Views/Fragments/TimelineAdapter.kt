@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.content.Context
 import android.view.LayoutInflater

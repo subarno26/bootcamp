@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -52,7 +52,8 @@ class AddCategory :Fragment(){
                 if (viewmodel.addCategory(uri!!,categoryName)){
                     progressDialog.dismiss()
                     activity!!.navigationView.menu.getItem(0).setChecked(true)
-                    val category = Categories()
+                    val category =
+                        Categories()
                     val transaction = activity!!.supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.container,category)
                     transaction.commit()

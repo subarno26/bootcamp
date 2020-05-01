@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -19,7 +19,9 @@ class ImagesAdapter(val mContext: Context?) : RecyclerView.Adapter<ImagesAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
        val v: View = LayoutInflater.from(mContext).inflate(R.layout.images_layout,parent,false)
-        return ImageHolder(v)
+        return ImageHolder(
+            v
+        )
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +38,8 @@ class ImagesAdapter(val mContext: Context?) : RecyclerView.Adapter<ImagesAdapter
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
         Picasso.get().load(mImageList[position].downloadURL).into(holder.cImage)
         holder.itemView.setOnClickListener{
-            val expandedImage = ExpandedImage()
+            val expandedImage =
+                ExpandedImage()
             val bundle = Bundle()
             bundle.putString("ImageURL",mImageList[position].downloadURL)
             bundle.putString("CategoryName",mImageList[position].CategoryName)

@@ -3,9 +3,9 @@ package com.example.galleryproject.Model
 import android.net.Uri
 import android.util.Log
 import com.example.galleryproject.*
-import com.example.galleryproject.Views.AddCategoryModel
-import com.example.galleryproject.Views.ImageModel
-import com.example.galleryproject.Views.UserModel
+import com.example.galleryproject.Views.Fragments.AddCategoryModel
+import com.example.galleryproject.Views.Fragments.ImageModel
+import com.example.galleryproject.Views.Fragments.UserModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +21,15 @@ class FirebaseModel {
     private lateinit var storageRef: StorageReference
     private lateinit var firestore: FirebaseFirestore
     private lateinit var currentUID: String
+
+    fun checkUserLogin(): Boolean {
+        val currentUser = auth.currentUser
+        var loggedIn = false
+        if (currentUser != null){
+            loggedIn = true
+        }
+        return loggedIn
+    }
 
     fun login(email: String, password: String): Task<AuthResult> {
         val fAuth = auth.signInWithEmailAndPassword(email, password)
@@ -67,7 +76,11 @@ class FirebaseModel {
         firestore = FirebaseFirestore.getInstance()
         val collection = firestore.collection("UsersDetails").document(currentUID)
         val userModel =
-            UserModel(sName, sEmail, imageID)
+            UserModel(
+                sName,
+                sEmail,
+                imageID
+            )
         collection.set(userModel).addOnSuccessListener {
             Log.e("FIREBASE MODEL ", "successful")
             //Toast.makeText(MainActivity(), "stored in db", Toast.LENGTH_SHORT).show()
@@ -102,10 +115,11 @@ class FirebaseModel {
     private fun uploadCategory(categoryName: String, categoryImageID: String) {
         val userId = auth.uid.toString()
 
-        val categoryInfo = AddCategoryModel(
-            categoryName,
-            categoryImageID
-        )
+        val categoryInfo =
+            AddCategoryModel(
+                categoryName,
+                categoryImageID
+            )
 
         firestore.collection("UsersDetails").document(userId).collection("Categories").document(categoryName)
             .set(categoryInfo)
@@ -165,22 +179,34 @@ class FirebaseModel {
 
     }
 
-    fun deleteImage(category:String, timestamp: String):Boolean{
+    fun deleteImage(imageUrl: String, category:String, timestamp: String):Boolean{
         firestore = FirebaseFirestore.getInstance()
         val uId = auth.uid.toString()
         var v = true
+
+
+        val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl)
+        storageReference.delete().addOnSuccessListener {
+            Log.d("Deletion", "delete success")
+        }
+            .addOnFailureListener {
+                Log.d("FAILED", "${it.message}")
+            }
 
         firestore.collection("UsersDetails").document(uId)
             .collection("Categories").document(category)
             .collection("Category images").document(timestamp).delete()
             .addOnCompleteListener{
                 //Toast.makeText(context,"Deleted Successfully",Toast.LENGTH_SHORT).show()
+                Log.d("Firebasemodel","Deleted from db")
                 v = true
 
             }.addOnFailureListener{
                 Log.e("error","$it.exception")
                 v = false
             }
+
+
         return v
 
     }

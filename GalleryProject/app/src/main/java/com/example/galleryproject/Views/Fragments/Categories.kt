@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ class Categories:Fragment() {
     private lateinit var viewmodel: Viewmodel
     private lateinit var auth: FirebaseAuth
     private lateinit var firestoreRef: FirebaseFirestore
-    private lateinit var cAdapter: Adapter
+    private lateinit var cCategoryAdapter: CategoryAdapter
     private lateinit var categoryList: ArrayList<AddCategoryModel>
     private lateinit var recyclerView: RecyclerView
     override fun onCreateView(
@@ -35,8 +35,12 @@ class Categories:Fragment() {
         categoryList = arrayListOf()
         viewmodel =ViewModelProvider(this).get(Viewmodel::class.java)
         viewmodel.loadData().observe(viewLifecycleOwner, Observer {
-            cAdapter = Adapter(it, context)
-            recyclerView.adapter = cAdapter
+            cCategoryAdapter =
+                CategoryAdapter(
+                    it,
+                    context
+                )
+            recyclerView.adapter = cCategoryAdapter
 
         })
 

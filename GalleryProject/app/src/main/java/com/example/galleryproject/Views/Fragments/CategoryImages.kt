@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.content.Context
 import android.content.Intent
@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.category_images.view.*
 import java.io.ByteArrayOutputStream
 import kotlin.collections.ArrayList
 
-class Images : Fragment() {
+class CategoryImages : Fragment() {
     private lateinit var viewmodel: Viewmodel
     private lateinit var uri:Uri
     private lateinit var storageReference: StorageReference

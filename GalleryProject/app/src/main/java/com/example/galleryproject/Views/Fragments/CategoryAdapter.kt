@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views
+package com.example.galleryproject.Views.Fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
 import com.squareup.picasso.Picasso
 
-class Adapter(val categoryList: List<AddCategoryModel>, val mContext: Context?) : RecyclerView.Adapter<Adapter.MyHolder>() {
+class CategoryAdapter(val categoryList: List<AddCategoryModel>, val mContext: Context?) : RecyclerView.Adapter<CategoryAdapter.MyHolder>() {
 
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -40,8 +40,10 @@ class Adapter(val categoryList: List<AddCategoryModel>, val mContext: Context?) 
         holder.categoryName.setText(categoryList.get(position).categoryName)
         Picasso.get().load(categoryList.get(position).categoryImage).into(holder.categoryImage)
         holder.itemView.setOnClickListener{
-            val imagesFragment = Images()
-            val expandedImage = ExpandedImage()
+            val imagesFragment =
+                CategoryImages()
+            val expandedImage =
+                ExpandedImage()
             val bundle1 = Bundle()
             val bundle = Bundle()
             bundle.putString("catName", categoryList[position].categoryName)

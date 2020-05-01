@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/container"
-    tools:context=".Views.MainActivity">
+    tools:context=".Views.Activity.MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -71,10 +71,10 @@
             android:layout_marginTop="40dp"/>
 
         <TextView
+            android:id="@+id/signupText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
-            android:onClick="signup"
             android:textSize="18sp"
             android:fontFamily="@font/roboto"
             android:layout_below="@id/loginBtn"
