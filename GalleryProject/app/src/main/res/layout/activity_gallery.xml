@@ -12,21 +12,9 @@
         android:layout_height="match_parent"
         android:layout_above="@id/navigationView"/>
 
-<!--    <Button-->
-<!--        android:id="@+id/button"-->
-<!--        android:onClick="logout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        tools:layout_editor_absoluteY="230dp" />-->
-<!--    -->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
-        android:padding="5dp"
+        android:padding="@dimen/padding_5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_nav"

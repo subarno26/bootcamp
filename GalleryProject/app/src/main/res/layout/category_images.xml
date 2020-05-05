@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_20"
         android:textSize="28sp"
         android:textColor="@color/borderColor"
         android:fontFamily="@font/roboto"/>
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/textView"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_30"
         tools:listitem="@layout/images_layout" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:elevation="10dp"
+        android:elevation="@dimen/padding_10"
         android:layout_margin="20dp">
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/chooseGallery"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             app:fab_icon="@drawable/camera2"
             app:fab_title="Camera"
-            app:maxImageSize="48dp"/>
+            app:maxImageSize="@dimen/size_48"/>
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </RelativeLayout>

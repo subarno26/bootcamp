@@ -15,28 +15,19 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.StorageReference
 
 class Timeline:Fragment() {
-    private lateinit var viewmodel: Viewmodel
-    private lateinit var auth: FirebaseAuth
-    private lateinit var storageReference: StorageReference
-    private lateinit var timeList: ArrayList<TimelineModel>
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var tAdapter: TimelineAdapter
-    //private lateinit var uri: Uri
+    private var viewmodel: Viewmodel = Viewmodel()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view =  inflater.inflate(R.layout.timeline,container,false)
-        timeList = arrayListOf()
-        recyclerView = view.findViewById(R.id.timelineRecycler) as RecyclerView
+        val recyclerView = view.findViewById(R.id.timelineRecycler) as RecyclerView
 
         recyclerView.layoutManager = GridLayoutManager(context,3)
-        auth = FirebaseAuth.getInstance()
-        val userID = auth.uid
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
         viewmodel.getTimeline().observe(viewLifecycleOwner, Observer {
-            tAdapter =
+            val tAdapter =
                 TimelineAdapter(
                     it,
                     context

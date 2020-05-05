@@ -3,13 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="2dp">
+    android:padding="@dimen/padding_2">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="170dp"
-        android:layout_height="200dp"
-        app:cardCornerRadius="3dp"
-        android:elevation="7dp">
+        android:layout_width="@dimen/size_170"
+        android:layout_height="@dimen/size_200"
+        app:cardCornerRadius="@dimen/radius_3"
+        android:elevation="@dimen/elevation_7">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,11 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="@dimen/margin_5"
         android:layout_centerHorizontal="true"
         android:textSize="12sp" />
     <ImageView
-        android:layout_margin = "2dp"
+        android:layout_margin = "@dimen/margin_2"
         android:id="@+id/timelineImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

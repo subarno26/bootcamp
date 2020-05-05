@@ -6,48 +6,48 @@
 
     <ImageView
         android:id="@+id/userImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/size_120"
+        android:layout_height="@dimen/size_120"
         android:src="@drawable/user"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="@dimen/margin_100"/>
 
 
     <EditText
         android:id="@+id/sNameEdit"
-        android:padding="10dp"
+        android:padding="@dimen/padding_10"
         android:background = "@drawable/borders"
         android:layout_below="@id/userImage"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/size_250"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_30"
         android:hint="@string/enter_name"
         android:gravity="center"
         />
     <EditText
-        android:padding="10dp"
+        android:padding="@dimen/padding_10"
         android:background = "@drawable/borders"
         android:id="@+id/sEmailEdit"
         android:layout_below="@id/sNameEdit"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/size_250"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_10"
         android:hint="@string/enter_email"
         android:gravity="center"
         />
 
     <EditText
-        android:padding="10dp"
+        android:padding="@dimen/padding_10"
         android:background = "@drawable/borders"
         android:id="@+id/sPasswordEdit"
         android:layout_below="@id/sEmailEdit"
         android:inputType="textPassword"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/size_250"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_10"
         android:hint="@string/enter_password"
         android:gravity="center"
         />
@@ -55,14 +55,14 @@
     <Button
         android:backgroundTint="@color/borderColor"
         android:textColor="#ffff"
-        android:padding="10dp"
+        android:padding="@dimen/padding_10"
         android:textSize="18sp"
         android:id="@+id/sSignup"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/size_250"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sPasswordEdit"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Sign up"
+        android:layout_marginTop="@dimen/margin_30"
+        android:text="@string/sign_up_new"
         />
 </RelativeLayout>

@@ -18,9 +18,8 @@ import kotlinx.android.synthetic.main.add_categories.*
 import kotlinx.android.synthetic.main.add_categories.view.*
 
 class AddCategory :Fragment(){
-    private lateinit var viewmodel: Viewmodel
+    private var viewmodel: Viewmodel = Viewmodel()
     private var uri:Uri ?= null
-    private lateinit var progressDialog : ProgressDialog
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,14 +42,12 @@ class AddCategory :Fragment(){
                 Toast.makeText(context,"Please enter name of the category",Toast.LENGTH_SHORT).show()
             }
             else {
-                progressDialog = ProgressDialog(context)
-                progressDialog.setTitle("Adding category")
-                progressDialog.setMessage("Please wait")
-                progressDialog.show()
+                val loadingDialog = LoadingDialog(activity!!)
+                loadingDialog.startLoadingDialog("Adding category, please wait.")
                 val categoryName = categoryEdit.text.toString()
                 viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
                 if (viewmodel.addCategory(uri!!,categoryName)){
-                    progressDialog.dismiss()
+                    loadingDialog.dismissDialog()
                     activity!!.navigationView.menu.getItem(0).setChecked(true)
                     val category =
                         Categories()

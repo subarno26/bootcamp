@@ -1,5 +1,6 @@
 package com.example.galleryproject.ViewModel
 
+import android.app.Activity
 import android.app.Application
 import android.net.Uri
 import android.text.TextUtils
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.example.galleryproject.Model.Repository
 import com.example.galleryproject.Views.Fragments.AddCategoryModel
 import com.example.galleryproject.Views.Fragments.ImageModel
+import com.example.galleryproject.Views.Fragments.LoadingDialog
 import com.example.galleryproject.Views.Fragments.TimelineModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult

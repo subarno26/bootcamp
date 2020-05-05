@@ -8,15 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/deleteImage"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="@dimen/margin_10"/>
 
 <ImageView
     android:id="@+id/deleteImage"
-    android:layout_width="30dp"
-    android:layout_height="30dp"
+    android:layout_width="@dimen/size_30"
+    android:layout_height="@dimen/size_30"
     android:src="@drawable/delete"
     android:layout_centerHorizontal="true"
     android:layout_alignParentBottom="true"
-    android:layout_marginBottom="10dp"/>
+    android:layout_marginBottom="@dimen/margin_10"/>
 
 </RelativeLayout>

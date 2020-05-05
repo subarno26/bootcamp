@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
 import com.squareup.picasso.Picasso
 
-class ImagesAdapter(val mContext: Context?) : RecyclerView.Adapter<ImagesAdapter.ImageHolder>() {
+class ImagesAdapter(val mContext: Context?, val imageCallbackListener: ImageCallbackListener) : RecyclerView.Adapter<ImagesAdapter.ImageHolder>() {
     private lateinit var mImageList: List<ImageModel>
     class ImageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var cImage : ImageView = itemView.findViewById(R.id.catImages)
@@ -25,7 +25,6 @@ class ImagesAdapter(val mContext: Context?) : RecyclerView.Adapter<ImagesAdapter
     }
 
     override fun getItemCount(): Int {
-        //Log.i("Imagelist size",imageList.size.toString())
         return mImageList.size
 
     }
@@ -38,18 +37,8 @@ class ImagesAdapter(val mContext: Context?) : RecyclerView.Adapter<ImagesAdapter
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
         Picasso.get().load(mImageList[position].downloadURL).into(holder.cImage)
         holder.itemView.setOnClickListener{
-            val expandedImage =
-                ExpandedImage()
-            val bundle = Bundle()
-            bundle.putString("ImageURL",mImageList[position].downloadURL)
-            bundle.putString("CategoryName",mImageList[position].CategoryName)
-            bundle.putString("TimeStamp",mImageList[position].Timestamp)
-            val activity: AppCompatActivity = it.context as AppCompatActivity
-            val transaction = activity.supportFragmentManager.beginTransaction()
-            expandedImage.arguments = bundle
-            transaction.replace(R.id.container,expandedImage)
-            transaction.addToBackStack("expanded image")
-            transaction.commit()
+            imageCallbackListener.onImageClick(mImageList[position].downloadURL,mImageList[position].CategoryName,mImageList[position].Timestamp)
+
         }
     }
 }

@@ -5,15 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.galleryproject.R
-import com.example.galleryproject.Views.Fragments.AddCategory
-import com.example.galleryproject.Views.Fragments.Categories
-import com.example.galleryproject.Views.Fragments.Profile
-import com.example.galleryproject.Views.Fragments.Timeline
+import com.example.galleryproject.Views.Fragments.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_gallery.*
 
-class GalleryActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+class GalleryActivity : AppCompatActivity(){
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
@@ -35,6 +32,7 @@ class GalleryActivity : AppCompatActivity() {
                     supportFragmentManager.
                         beginTransaction().
                         replace(R.id.container,profileFragment)
+                        .addToBackStack(null)
                         .commit()
                 }
                 R.id.gallery_item -> {
@@ -43,6 +41,7 @@ class GalleryActivity : AppCompatActivity() {
                     supportFragmentManager.
                         beginTransaction().
                         replace(R.id.container,categoryFragment)
+                        .addToBackStack(null)
                         .commit()
                 }
                 R.id.add_item -> {
@@ -51,6 +50,7 @@ class GalleryActivity : AppCompatActivity() {
                     supportFragmentManager.
                         beginTransaction().
                         replace(R.id.container,addFragment)
+                        .addToBackStack(null)
                         .commit()
                 }
                 R.id.timeline_item -> {
@@ -59,6 +59,7 @@ class GalleryActivity : AppCompatActivity() {
                     supportFragmentManager.
                         beginTransaction().
                         replace(R.id.container,timelineFragment)
+                        .addToBackStack(null)
                         .commit()
                 }
             }
@@ -66,11 +67,8 @@ class GalleryActivity : AppCompatActivity() {
         }
     }
 
-    fun logout(view: View) {
-        auth = FirebaseAuth.getInstance()
-        auth.signOut()
-        startActivity(Intent(this, MainActivity::class.java))
-    }
+
+
 
 
 }

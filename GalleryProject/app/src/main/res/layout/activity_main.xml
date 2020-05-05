@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,11 +11,12 @@
 
         <ImageView
             android:id="@+id/loginImage"
-            android:layout_width="103dp"
-            android:layout_height="105dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="80dp"
-            android:src="@drawable/login" />
+            android:layout_width="@dimen/login_image_width"
+            android:layout_height="@dimen/login_image_height"
+            android:layout_marginStart="@dimen/margin_100"
+            android:layout_marginTop="@dimen/margin_80"
+            android:src="@drawable/login"
+            android:contentDescription="@string/login" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,42 +24,44 @@
             android:text="@string/login"
             android:textColor="@color/borderColor"
             android:fontFamily="@font/roboto"
-           android:layout_toRightOf="@id/loginImage"
+           android:layout_toEndOf="@id/loginImage"
             android:layout_alignBottom="@id/loginImage"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="@dimen/margin_100"
             android:textSize="34sp"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginStart="@dimen/margin_5"/>
         <EditText
-            android:padding="10dp"
+            android:padding="@dimen/padding_10"
             android:background = "@drawable/borders"
             android:layout_below="@id/loginImage"
             android:id="@+id/emailEdit"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/signUp_width"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/margin_50"
             android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:hint="Email ID"
-            />
+            android:hint="@string/email_id"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/passwordEdit"
-            android:padding="10dp"
+            android:padding="@dimen/padding_10"
             android:background = "@drawable/borders"
             android:inputType="textPassword"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/signUp_width"
             android:layout_height="wrap_content"
             android:layout_below="@id/emailEdit"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:gravity="center"
-            android:hint="Password"/>
+            android:hint="@string/password"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/loginBtn"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/signUp_width"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/padding_10"
             android:background="@color/borderColor"
             android:text="@string/login"
             android:fontFamily="@font/roboto"
@@ -68,7 +70,7 @@
             android:onClick="login"
             android:layout_below="@id/passwordEdit"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="@dimen/margin_40"/>
 
         <TextView
             android:id="@+id/signupText"
@@ -79,6 +81,6 @@
             android:fontFamily="@font/roboto"
             android:layout_below="@id/loginBtn"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp" />
+            android:layout_marginTop="@dimen/margin_13" />
     </RelativeLayout>
 </FrameLayout>

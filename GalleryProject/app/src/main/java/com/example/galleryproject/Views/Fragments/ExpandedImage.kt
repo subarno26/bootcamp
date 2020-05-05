@@ -16,11 +16,9 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.expanded_image.view.*
 
 class ExpandedImage : Fragment() {
-    private lateinit var viewmodel: Viewmodel
-    private lateinit var firestore: FirebaseFirestore
-    private lateinit var auth: FirebaseAuth
-    private lateinit var category:String
-    private lateinit var timeStamp:String
+    private var viewmodel: Viewmodel = Viewmodel()
+    private var category:String ?= null
+    private var timeStamp:String?= null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,11 +27,8 @@ class ExpandedImage : Fragment() {
         val view = inflater.inflate(R.layout.expanded_image, container, false)
         val bundle = this.arguments
         val mImage = bundle?.getString("ImageURL")
-        category = bundle!!.getString("CategoryName")!!
-        timeStamp = bundle.getString("TimeStamp")!!
-
-        Log.i("Fetched", category)
-        Log.i("Fetched", timeStamp)
+        category = bundle!!.getString("CategoryName")
+        timeStamp = bundle.getString("TimeStamp")
         Picasso.get().load(mImage).into(view.expandedImageView)
 
         view.deleteImage.setOnClickListener {
@@ -44,7 +39,7 @@ class ExpandedImage : Fragment() {
 
     private fun deleteImage(imageUrl: String) {
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
-        if (viewmodel.deleteImage(imageUrl,category,timeStamp)){
+        if (viewmodel.deleteImage(imageUrl,category!!,timeStamp!!)){
             Toast.makeText(context,"Deleted successfully",Toast.LENGTH_SHORT).show()
             val manager = activity!!.supportFragmentManager
             manager.popBackStack()

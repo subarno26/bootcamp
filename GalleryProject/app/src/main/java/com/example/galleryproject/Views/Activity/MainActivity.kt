@@ -7,40 +7,31 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
+import com.example.galleryproject.Views.Fragments.LoadingDialog
 import com.example.galleryproject.Views.Fragments.Signup
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private var email:String ?= null
+    private var password:String?=null
     private lateinit var viewmodel: Viewmodel
-    private lateinit var auth: FirebaseAuth
-    private lateinit var email:String
-    private lateinit var password:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        auth = FirebaseAuth.getInstance()
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+        if (viewmodel.checkUserLogin()){
+            startActivity(Intent(this,
+                GalleryActivity::class.java))
+        }
+
         signupText.setOnClickListener {
             signup()
         }
 
     }
-
-
-
-    public override fun onStart() {
-        super.onStart()
-        if (viewmodel.checkUserLogin()){
-            startActivity(Intent(this,
-                GalleryActivity::class.java))
-        }
-    }
-
 
     private fun validate():Boolean{
         var valid = true
@@ -62,9 +53,11 @@ class MainActivity : AppCompatActivity() {
         if (!validate()){
             return
         }
-
-        viewmodel.login(email,password).addOnCompleteListener(this) { task ->
+        val loadingDialog = LoadingDialog(this)
+        loadingDialog.startLoadingDialog("Signing in, please wait.")
+        viewmodel.login(email!!,password!!).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    loadingDialog.dismissDialog()
                     Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this,
                         GalleryActivity::class.java))

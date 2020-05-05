@@ -3,29 +3,25 @@ package com.example.galleryproject.Views.Fragments
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.Viewmodel
 import com.example.galleryproject.Views.Activity.MainActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.profile.*
 import kotlinx.android.synthetic.main.profile.view.*
 
 class Profile : Fragment() {
-    private lateinit var viewmodel: Viewmodel
-    private lateinit var storageRef:StorageReference
-    private lateinit var auth: FirebaseAuth
-    private lateinit var db:FirebaseFirestore
+    private var viewmodel: Viewmodel = Viewmodel()
     private lateinit var uri: Uri
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,12 +73,10 @@ class Profile : Fragment() {
 
 
 
-    private lateinit var progress:ProgressDialog
+
     private fun userDetails() {
-        progress = ProgressDialog(context)
-        progress.setTitle("Fetching user data")
-        progress.setMessage("Please wait")
-        progress.show()
+        val loadingDialog = LoadingDialog(activity!!)
+        loadingDialog.startLoadingDialog("Fetching user details")
         viewmodel.getUserDetails()
         .addOnSuccessListener { document ->
             if (document != null) {
@@ -90,7 +84,8 @@ class Profile : Fragment() {
                 username.text = document.getString("username")
                 userEmail.text = document.getString("emailID")
                 Picasso.get().load(document.getString("imageID")).into(profile_image)
-                progress.dismiss()
+                loadingDialog.dismissDialog()
+                progressImage.visibility = View.GONE
             } else {
                 Log.e("NO DOCUMENT", "No such document")
             }

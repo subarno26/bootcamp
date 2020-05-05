@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,16 +28,12 @@ import kotlinx.android.synthetic.main.category_images.view.*
 import java.io.ByteArrayOutputStream
 import kotlin.collections.ArrayList
 
-class CategoryImages : Fragment() {
-    private lateinit var viewmodel: Viewmodel
+class CategoryImages : Fragment(), ImageCallbackListener {
+
+    private var categoryName:String ?= null
+    private var loadingDialog:LoadingDialog ?= null
+    private var viewmodel: Viewmodel = Viewmodel()
     private lateinit var uri:Uri
-    private lateinit var storageReference: StorageReference
-    private lateinit var auth: FirebaseAuth
-    private lateinit var firestore: FirebaseFirestore
-    private lateinit var categoryName:String
-    private lateinit var imagesAdapter: ImagesAdapter
-    private lateinit var imageList:ArrayList<String>
-    private lateinit var iList : ArrayList<ImageModel>
     private lateinit var recycler : RecyclerView
 
     override fun onCreateView(
@@ -49,12 +46,9 @@ class CategoryImages : Fragment() {
         categoryName = bundle?.getString("catName").toString()
         view.textView.text = categoryName
 
-        auth = FirebaseAuth.getInstance()
-        firestore = FirebaseFirestore.getInstance()
         recycler = view.findViewById(R.id.recyclerImages) as RecyclerView
         recycler.layoutManager = GridLayoutManager(this.context,3)
-        imageList = arrayListOf()
-        iList = arrayListOf()
+        loadingDialog = LoadingDialog(activity!!)
 
         loadImages()
 
@@ -87,11 +81,9 @@ class CategoryImages : Fragment() {
     private fun loadImages() {
 
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
-        viewmodel.loadImages(categoryName).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            imagesAdapter =
-                ImagesAdapter(context)
+        viewmodel.loadImages(categoryName.toString()).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            val imagesAdapter = ImagesAdapter(context, this)
             imagesAdapter.listChange(it)
-            //imagesAdapter.notifyDataSetChanged()
             recycler.adapter = imagesAdapter
         })
     }
@@ -101,6 +93,7 @@ class CategoryImages : Fragment() {
             uri = data.data!!
             Log.e("URI GALLERY: ","$uri")
             //Toast.makeText(context,"Gallery",Toast.LENGTH_SHORT).show()
+            loadingDialog!!.startLoadingDialog("Uploading image, please wait.")
             storeImage()
         }
         if (data!= null && requestCode == 4 ){
@@ -108,6 +101,7 @@ class CategoryImages : Fragment() {
             uri = getImageUri(context,photo)
             Log.e("URI CAMERA: ","$uri")
             //Toast.makeText(context,"camera",Toast.LENGTH_SHORT).show()
+            loadingDialog!!.startLoadingDialog("Uploading image, please wait.")
             storeImage()
         }
     }
@@ -128,7 +122,21 @@ class CategoryImages : Fragment() {
     }
 
     private fun storeImage() {
-        viewmodel.storeImages(categoryName,uri)
-        Toast.makeText(context,"Successfully uploaded.",Toast.LENGTH_SHORT).show()
+        viewmodel.storeImages(categoryName!!,uri)
+        Toast.makeText(context,"Please wait while the image is being loaded.",Toast.LENGTH_LONG).show()
+        loadingDialog!!.dismissDialog()
+    }
+
+    override fun onImageClick(url: String, categoryName: String, timestamp: String) {
+        val expandedImage = ExpandedImage()
+        val bundle = Bundle()
+        bundle.putString("ImageURL",url)
+        bundle.putString("CategoryName",categoryName)
+        bundle.putString("TimeStamp",timestamp)
+        val transaction = activity!!.supportFragmentManager.beginTransaction()
+        expandedImage.arguments = bundle
+        transaction.replace(R.id.container,expandedImage)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

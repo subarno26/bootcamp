@@ -4,21 +4,23 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/categoryImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/size_200"
+        android:layout_height="@dimen/size_200"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="@dimen/margin_170"
         android:src="@drawable/landscape" />
 
     <EditText
         android:id="@+id/categoryEdit"
         android:layout_width="200dp"
         android:layout_below="@id/categoryImage"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_20"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:hint="Category name"/>
+        android:hint="@string/category_name"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <Button
         android:background="@color/borderColor"
@@ -28,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/categoryEdit"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="add"/>
+        android:layout_marginTop="@dimen/margin_30"
+        android:text="@string/add"/>
 
 </RelativeLayout>

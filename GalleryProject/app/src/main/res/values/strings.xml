@@ -9,4 +9,10 @@
     <string name="timeline">Timeline</string>
     <string name="logout">logout</string>
     <string name="update_profile_picture">Update profile picture</string>
+    <string name="loading">Loading, please wait.</string>
+    <string name="email_id">Email ID</string>
+    <string name="password">Password</string>
+    <string name="category_name">Category name</string>
+    <string name="add">add</string>
+    <string name="sign_up_new">Sign up</string>
 </resources>

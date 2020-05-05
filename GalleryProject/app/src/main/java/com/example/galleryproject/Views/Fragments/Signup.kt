@@ -19,11 +19,10 @@ import kotlinx.android.synthetic.main.signup.*
 import kotlinx.android.synthetic.main.signup.view.*
 
 class Signup : Fragment(){
-    private lateinit var viewmodel: Viewmodel
-    private lateinit var sName:String
-    private lateinit var sEmail:String
-    private lateinit var sPass:String
-    private lateinit var auth: FirebaseAuth
+    private var viewmodel: Viewmodel = Viewmodel()
+    private var sName:String ?= null
+    private var sEmail:String?= null
+    private var sPass:String?= null
     private var uri:Uri ?= null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,13 +31,12 @@ class Signup : Fragment(){
     ): View? {
         val view: View = inflater.inflate(R.layout.signup,container,false)
         viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
-        auth = FirebaseAuth.getInstance()
         view.sSignup.setOnClickListener {
             if (!sValidate()){
 //                sValidate()
             }
             else {
-                if (viewmodel.signup(sName,sEmail,sPass,uri)) {
+                if (viewmodel.signup(sName!!,sEmail!!,sPass!!,uri)) {
                     val intent = Intent(context,
                         GalleryActivity::class.java)
                     startActivity(intent)
@@ -87,15 +85,15 @@ class Signup : Fragment(){
             sPasswordEdit.error = "Required Field"
             v = false
         }
-        if (!sEmail.contains("@") || !sEmail.contains(".com")){
+        if (!sEmail!!.contains("@") || !sEmail!!.contains(".com")){
             sEmailEdit.error = "Enter a valid email address"
             v = false
         }
-        if (sPass.length < 6) {
+        if (sPass!!.length < 6) {
             sPasswordEdit.error = "Password is too short"
             v = false
         }
-        if (sName.length < 4) {
+        if (sName!!.length < 4) {
             sNameEdit.error = "Name is too short"
             v = false
         }
