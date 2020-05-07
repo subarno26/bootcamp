@@ -28,4 +28,5 @@
     <dimen name="elevation_7">7dp</dimen>
     <dimen name="radius_3">3dp</dimen>
     <dimen name="margin_2">2dp</dimen>
+    <dimen name="size_100">100dp</dimen>
 </resources>

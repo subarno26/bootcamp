@@ -14,25 +14,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
-import com.example.galleryproject.ViewModel.Viewmodel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
+import com.example.galleryproject.ViewModel.CategoryImagesViewModel
 import kotlinx.android.synthetic.main.category_images.view.*
 import java.io.ByteArrayOutputStream
-import kotlin.collections.ArrayList
 
 class CategoryImages : Fragment(), ImageCallbackListener {
 
     private var categoryName:String ?= null
     private var loadingDialog:LoadingDialog ?= null
-    private var viewmodel: Viewmodel = Viewmodel()
+    private var viewmodel = CategoryImagesViewModel()
     private lateinit var uri:Uri
     private lateinit var recycler : RecyclerView
 
@@ -80,7 +75,7 @@ class CategoryImages : Fragment(), ImageCallbackListener {
 
     private fun loadImages() {
 
-        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+        viewmodel = ViewModelProvider(this).get(CategoryImagesViewModel::class.java)
         viewmodel.loadImages(categoryName.toString()).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             val imagesAdapter = ImagesAdapter(context, this)
             imagesAdapter.listChange(it)

@@ -12,14 +12,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
-import com.example.galleryproject.ViewModel.Viewmodel
+import com.example.galleryproject.ViewModel.SignupViewModel
 import com.example.galleryproject.Views.Activity.GalleryActivity
-import com.google.firebase.auth.FirebaseAuth
+import com.example.galleryproject.Views.Activity.LoginActivity
 import kotlinx.android.synthetic.main.signup.*
 import kotlinx.android.synthetic.main.signup.view.*
 
 class Signup : Fragment(){
-    private var viewmodel: Viewmodel = Viewmodel()
+    private var viewmodel = SignupViewModel()
     private var sName:String ?= null
     private var sEmail:String?= null
     private var sPass:String?= null
@@ -30,7 +30,7 @@ class Signup : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.signup,container,false)
-        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+        viewmodel = ViewModelProvider(this).get(SignupViewModel::class.java)
         view.sSignup.setOnClickListener {
             if (!sValidate()){
 //                sValidate()
@@ -53,6 +53,10 @@ class Signup : Fragment(){
             startActivityForResult(Intent.createChooser(intent,"Pick image"),0)
         }
 
+        view.existingUserButton.setOnClickListener {
+            startActivity(Intent(context,LoginActivity::class.java))
+        }
+
 
         return view
 
@@ -69,9 +73,9 @@ class Signup : Fragment(){
     }
 
     private fun sValidate():Boolean {
-        sName = sNameEdit.text.toString()
-        sEmail = sEmailEdit.text.toString()
-        sPass = sPasswordEdit.text.toString()
+        sName = sNameEdit.editText!!.text.toString()
+        sEmail = sEmailEdit.editText!!.text.toString()
+        sPass = sPasswordEdit.editText!!.text.toString()
         var v = true
         if (TextUtils.isEmpty(sName)) {
             sNameEdit.error = "Required Field"

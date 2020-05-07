@@ -12,7 +12,9 @@
     <string name="loading">Loading, please wait.</string>
     <string name="email_id">Email ID</string>
     <string name="password">Password</string>
-    <string name="category_name">Category name</string>
+    <string name="category_name">Enter category name</string>
     <string name="add">add</string>
     <string name="sign_up_new">Sign up</string>
+    <string name="register">Welcome aboard!</string>
+    <string name="existing_user_text">Already on board? Sign in now!</string>
 </resources>

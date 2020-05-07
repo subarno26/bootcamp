@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#2196F3</color>
     <color name="borderColor">#F33676</color>
+    <color name="loginBackground">#18267A</color>
+    <color name="white">#ffff</color>
+    <color name="color_dark">#353232</color>
 </resources>

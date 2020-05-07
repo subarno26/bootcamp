@@ -9,7 +9,7 @@
         android:layout_width="@dimen/size_170"
         android:layout_height="@dimen/size_200"
         app:cardCornerRadius="@dimen/radius_3"
-        android:elevation="@dimen/elevation_7">
+        app:cardElevation="@dimen/elevation_7">
 
         <RelativeLayout
             android:layout_width="match_parent"

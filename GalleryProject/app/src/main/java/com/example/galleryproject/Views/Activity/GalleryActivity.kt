@@ -62,9 +62,11 @@ class GalleryActivity : AppCompatActivity(){
                         .addToBackStack(null)
                         .commit()
                 }
+
             }
             true
         }
+
     }
 
 

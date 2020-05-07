@@ -10,12 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
-import com.example.galleryproject.ViewModel.Viewmodel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.StorageReference
+import com.example.galleryproject.ViewModel.TimelineViewModel
 
 class Timeline:Fragment() {
-    private var viewmodel: Viewmodel = Viewmodel()
+    private var viewmodel = TimelineViewModel()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,8 +22,8 @@ class Timeline:Fragment() {
         val view =  inflater.inflate(R.layout.timeline,container,false)
         val recyclerView = view.findViewById(R.id.timelineRecycler) as RecyclerView
 
-        recyclerView.layoutManager = GridLayoutManager(context,3)
-        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+        recyclerView.layoutManager = GridLayoutManager(context,3,GridLayoutManager.VERTICAL,false)
+        viewmodel = ViewModelProvider(this).get(TimelineViewModel::class.java)
         viewmodel.getTimeline().observe(viewLifecycleOwner, Observer {
             val tAdapter =
                 TimelineAdapter(

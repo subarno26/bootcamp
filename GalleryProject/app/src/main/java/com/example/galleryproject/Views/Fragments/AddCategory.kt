@@ -1,6 +1,5 @@
 package com.example.galleryproject.Views.Fragments
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,13 +11,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
-import com.example.galleryproject.ViewModel.Viewmodel
+import com.example.galleryproject.ViewModel.AddCategoryViewModel
 import kotlinx.android.synthetic.main.activity_gallery.*
 import kotlinx.android.synthetic.main.add_categories.*
 import kotlinx.android.synthetic.main.add_categories.view.*
 
 class AddCategory :Fragment(){
-    private var viewmodel: Viewmodel = Viewmodel()
+    private var viewmodel = AddCategoryViewModel()
     private var uri:Uri ?= null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,14 +37,15 @@ class AddCategory :Fragment(){
             if (uri == null){
                 Toast.makeText(context,"Please select an image for the category",Toast.LENGTH_SHORT).show()
             }
-            else if (TextUtils.isEmpty(categoryEdit.text)){
-                Toast.makeText(context,"Please enter name of the category",Toast.LENGTH_SHORT).show()
+            else if (TextUtils.isEmpty(categoryEdit.editText!!.text)){
+                categoryEdit.error = "Please enter name of the category"
+//                Toast.makeText(context,"Please enter name of the category",Toast.LENGTH_SHORT).show()
             }
             else {
                 val loadingDialog = LoadingDialog(activity!!)
                 loadingDialog.startLoadingDialog("Adding category, please wait.")
-                val categoryName = categoryEdit.text.toString()
-                viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+                val categoryName = categoryEdit.editText!!.text.toString()
+                viewmodel = ViewModelProvider(this).get(AddCategoryViewModel::class.java)
                 if (viewmodel.addCategory(uri!!,categoryName)){
                     loadingDialog.dismissDialog()
                     activity!!.navigationView.menu.getItem(0).setChecked(true)

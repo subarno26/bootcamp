@@ -3,25 +3,23 @@ package com.example.galleryproject.Views.Fragments
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
-import com.example.galleryproject.ViewModel.Viewmodel
-import com.example.galleryproject.Views.Activity.MainActivity
+import com.example.galleryproject.ViewModel.ProfileViewModel
+import com.example.galleryproject.Views.Activity.LoginActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.profile.*
 import kotlinx.android.synthetic.main.profile.view.*
 
 class Profile : Fragment() {
-    private var viewmodel: Viewmodel = Viewmodel()
+    private var viewmodel = ProfileViewModel()
     private lateinit var uri: Uri
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,12 +27,14 @@ class Profile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view:View = inflater.inflate(R.layout.profile,container,false)
-        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+        viewmodel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         userDetails()
         view.logoutBtn.setOnClickListener {
             viewmodel.logout()
             startActivity(Intent(context,
-                MainActivity::class.java))
+                LoginActivity::class.java))
+                activity!!.finish()
+
         }
 
         view.uploadProfile.setOnClickListener{

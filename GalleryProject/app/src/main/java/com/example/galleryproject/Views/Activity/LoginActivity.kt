@@ -9,19 +9,19 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
-import com.example.galleryproject.ViewModel.Viewmodel
+import com.example.galleryproject.ViewModel.LoginViewModel
 import com.example.galleryproject.Views.Fragments.LoadingDialog
 import com.example.galleryproject.Views.Fragments.Signup
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private var email:String ?= null
     private var password:String?=null
-    private lateinit var viewmodel: Viewmodel
+    private lateinit var viewmodel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewmodel = ViewModelProvider(this).get(Viewmodel::class.java)
+        viewmodel = ViewModelProvider(this).get(LoginViewModel::class.java)
         if (viewmodel.checkUserLogin()){
             startActivity(Intent(this,
                 GalleryActivity::class.java))
@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun validate():Boolean{
         var valid = true
-        email = emailEdit.text.toString()
-        password = passwordEdit.text.toString()
+        email = emailEdit.editText!!.text.toString()
+        password = passwordEdit.editText!!.text.toString()
 
         if (TextUtils.isEmpty(email)){
             emailEdit.error = "Required field"
@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this,
                         GalleryActivity::class.java))
                 } else {
+                    loadingDialog.dismissDialog()
                     Toast.makeText(this,"Email id and password do not match",Toast.LENGTH_SHORT).show()
                     Log.e("ERROR", "signInWithEmail:failure", task.exception)
 
