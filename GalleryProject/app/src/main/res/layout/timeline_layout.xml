@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/padding_2">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/size_170"
+        android:layout_height="@dimen/size_200"
+        app:cardCornerRadius="@dimen/radius_3"
+        app:cardElevation="@dimen/elevation_7">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+        android:id="@+id/timelineTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin_5"
+        android:layout_centerHorizontal="true"
+        android:textSize="12sp" />
+    <ImageView
+        android:layout_margin = "@dimen/margin_2"
+        android:id="@+id/timelineImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/timelineTime"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

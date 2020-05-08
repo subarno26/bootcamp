@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">GalleryProject</string>
+    <string name="login">Login</string>
+    <string name="sign_up">New user? Sign up now!</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="categories">Categories</string>
+    <string name="timeline">Timeline</string>
+    <string name="logout">logout</string>
+    <string name="update_profile_picture">Update profile picture</string>
+    <string name="loading">Loading, please wait.</string>
+    <string name="email_id">Email ID</string>
+    <string name="password">Password</string>
+    <string name="category_name">Enter category name</string>
+    <string name="add">add</string>
+    <string name="sign_up_new">Sign up</string>
+    <string name="register">Welcome aboard!</string>
+    <string name="existing_user_text">Already on board? Sign in now!</string>
+</resources>

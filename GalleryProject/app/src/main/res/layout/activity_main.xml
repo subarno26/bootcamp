@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:background="@drawable/background_color"
+    tools:context=".Views.Activity.LoginActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/loginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/emailEdit"
+            android:layout_marginTop="@dimen/margin_80"
+            android:fontFamily="sans-serif-thin"
+            android:text="@string/login"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="44sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginText"
+            android:id="@+id/emailEdit"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_40"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="@dimen/signUp_width"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/roboto"
+                android:hint="@string/email_id"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/padding_10"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailEdit"
+            android:id="@+id/passwordEdit"
+            android:textColorHint="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_10"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="@dimen/signUp_width"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/roboto"
+                android:hint="@string/password"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:padding="@dimen/padding_10"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="@dimen/signUp_width"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_10"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/login"
+            android:fontFamily="@font/roboto"
+            android:textColor="#ffff"
+            android:textSize="22sp"
+            android:onClick="login"
+            android:layout_below="@id/passwordEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_40"/>
+
+        <TextView
+            android:id="@+id/signupText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_13"
+            android:fontFamily="sans-serif-thin"
+            android:text="@string/sign_up"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="signUp_width">300dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="login_image_width">103dp</dimen>
+    <dimen name="login_image_height">105dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_13">13dp</dimen>
+    <dimen name="size_200">200dp</dimen>
+    <dimen name="margin_170">170dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="size_48">48dp</dimen>
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="size_150">150dp</dimen>
+    <dimen name="size_120">120dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_70">70dp</dimen>
+    <dimen name="size_250">250dp</dimen>
+    <dimen name="padding_2">2dp</dimen>
+    <dimen name="size_170">170dp</dimen>
+    <dimen name="elevation_7">7dp</dimen>
+    <dimen name="radius_3">3dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="size_100">100dp</dimen>
+</resources>

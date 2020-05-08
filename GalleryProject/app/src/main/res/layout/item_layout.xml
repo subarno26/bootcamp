@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_5dp"
+    android:layout_margin="@dimen/margin_5">
+
+    <ProgressBar
+        android:layout_width="@dimen/size_30"
+        android:layout_height="@dimen/size_30"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/borderColor"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cImage"
+        android:layout_width="@dimen/size_120"
+        android:layout_height="@dimen/size_120"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/categoryName"
+        android:textColor="@color/borderColor"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_3"/>
+
+</RelativeLayout>

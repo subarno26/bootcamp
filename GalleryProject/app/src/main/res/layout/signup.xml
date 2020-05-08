@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_color">
+    <TextView
+        android:id="@+id/registerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/sEmailEdit"
+        android:layout_marginTop="@dimen/margin_80"
+        android:textAllCaps="true"
+        android:fontFamily="sans-serif-thin"
+        android:text="@string/register"
+
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+    <ImageView
+        android:id="@+id/userImage"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_100"
+        android:src="@drawable/user4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_30"
+        android:layout_below="@+id/registerText"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userImage"
+        android:id="@+id/sNameEdit"
+        android:backgroundTint="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_5"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="@dimen/signUp_width"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/enter_name"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/padding_10"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sNameEdit"
+        android:id="@+id/sEmailEdit"
+        android:backgroundTint="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_5"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="@dimen/signUp_width"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/enter_email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/padding_10"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sEmailEdit"
+        android:id="@+id/sPasswordEdit"
+        android:textColorHint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_5"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/white"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="@dimen/signUp_width"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:padding="@dimen/padding_10"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textColor="#ffff"
+        android:padding="@dimen/padding_10"
+        android:textSize="20sp"
+        android:id="@+id/sSignup"
+        android:fontFamily="@font/roboto"
+        android:layout_width="@dimen/signUp_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sPasswordEdit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="@string/sign_up_new"
+        />
+
+
+    <TextView
+        android:id="@+id/existingUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sSignup"
+        android:layout_centerHorizontal="true"
+        android:text="@string/existing_user_text"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="@dimen/margin_10"
+        android:fontFamily="sans-serif-thin"/>
+
+</RelativeLayout>
