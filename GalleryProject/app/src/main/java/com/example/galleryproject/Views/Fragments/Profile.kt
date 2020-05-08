@@ -2,13 +2,16 @@ package com.example.galleryproject.Views.Fragments
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
@@ -38,35 +41,42 @@ class Profile : Fragment() {
         }
 
         view.uploadProfile.setOnClickListener{
-            val intent = Intent()
-            intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(Intent.createChooser(intent,"Upload image"),1)
-            
+            @RequiresApi(Build.VERSION_CODES.M)
+            if (context?.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(
+                    arrayOf(
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    ),2
+                )
+            }
+            else {
+                val intent = Intent()
+                intent.type = "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
+                startActivityForResult(Intent.createChooser(intent, "Upload image"), 1)
+            }
         }
 
         return view
     }
-    
-    private lateinit var imageProgress:ProgressDialog
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 1 && data!= null){
             uri = data.data!!
-
-            imageProgress = ProgressDialog(context)
-            imageProgress.setTitle("Updating profile")
-            imageProgress.setMessage("Please wait")
-            imageProgress.show()
-            
             profile_image.setImageURI(uri)
             updateImage()
         }
     }
 
     private fun updateImage() {
+        val loadingDialog = LoadingDialog(activity!!)
+        loadingDialog.startLoadingDialog("Updating user details")
         viewmodel.updateUserImage(uri)
-        imageProgress.dismiss()
+        loadingDialog.dismissDialog()
+
+
+
     }
 
 
@@ -75,7 +85,7 @@ class Profile : Fragment() {
 
 
     private fun userDetails() {
-        val loadingDialog = LoadingDialog(activity!!)
+        val loadingDialog = LoadingDialog(context!!)
         loadingDialog.startLoadingDialog("Fetching user details")
         viewmodel.getUserDetails()
         .addOnSuccessListener { document ->

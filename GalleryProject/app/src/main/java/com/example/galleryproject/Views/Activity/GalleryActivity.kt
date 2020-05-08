@@ -9,7 +9,7 @@ import com.example.galleryproject.Views.Fragments.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_gallery.*
 
-class GalleryActivity : AppCompatActivity(){
+class   GalleryActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +21,7 @@ class GalleryActivity : AppCompatActivity(){
             beginTransaction().
             replace(R.id.container,categoryFragment)
             .commit()
-
+        val manager = supportFragmentManager
         navigationView.setOnNavigationItemSelectedListener {
             item ->
             when(item.itemId){

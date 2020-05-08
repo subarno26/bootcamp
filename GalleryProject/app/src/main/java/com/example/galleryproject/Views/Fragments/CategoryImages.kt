@@ -1,5 +1,6 @@
 package com.example.galleryproject.Views.Fragments
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -27,10 +28,9 @@ class CategoryImages : Fragment(), ImageCallbackListener {
 
     private var categoryName:String ?= null
     private var loadingDialog:LoadingDialog ?= null
-    private var viewmodel = CategoryImagesViewModel()
+    private  var viewmodel = CategoryImagesViewModel()
     private lateinit var uri:Uri
     private lateinit var recycler : RecyclerView
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,10 +48,21 @@ class CategoryImages : Fragment(), ImageCallbackListener {
         loadImages()
 
         view.chooseGallery.setOnClickListener{
-            val galleryIntent = Intent()
-            galleryIntent.type = "image/*"
-            galleryIntent.action = Intent.ACTION_PICK
-            startActivityForResult(galleryIntent,3)
+            @RequiresApi(Build.VERSION_CODES.M)
+            if (context?.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(
+                    arrayOf(
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    ),5
+                )
+            }
+            else {
+                val galleryIntent = Intent()
+                galleryIntent.type = "image/*"
+                galleryIntent.action = Intent.ACTION_PICK
+                startActivityForResult(galleryIntent, 3)
+            }
+
         }
 
         view.chooseCamera.setOnClickListener{

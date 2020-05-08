@@ -39,10 +39,9 @@ class AddCategory :Fragment(){
             }
             else if (TextUtils.isEmpty(categoryEdit.editText!!.text)){
                 categoryEdit.error = "Please enter name of the category"
-//                Toast.makeText(context,"Please enter name of the category",Toast.LENGTH_SHORT).show()
             }
             else {
-                val loadingDialog = LoadingDialog(activity!!)
+                val loadingDialog = LoadingDialog(context!!)
                 loadingDialog.startLoadingDialog("Adding category, please wait.")
                 val categoryName = categoryEdit.editText!!.text.toString()
                 viewmodel = ViewModelProvider(this).get(AddCategoryViewModel::class.java)
@@ -54,7 +53,7 @@ class AddCategory :Fragment(){
                     val transaction = activity!!.supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.container,category)
                     transaction.commit()
-                    Toast.makeText(context,"Category added successfully",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"Adding category, please wait.",Toast.LENGTH_SHORT).show()
                 }
 
 

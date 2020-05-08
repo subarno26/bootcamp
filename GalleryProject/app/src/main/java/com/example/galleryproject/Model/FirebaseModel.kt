@@ -239,11 +239,11 @@ class FirebaseModel {
     private fun updateDatabase(newImage: String) {
         firestore = FirebaseFirestore.getInstance()
         val docID = auth.uid.toString()
-        firestore.collection("UsersDetails").document(docID).update("imageID",newImage).addOnSuccessListener {
+        firestore.collection("UsersDetails").document(docID).update("imageID",newImage)
+            .addOnSuccessListener {
             Log.i("Firebasemodel","Update successful!")
         }.addOnFailureListener{
             Log.e("Failure","$it")
-            //Toast.makeText(context,"Unable to update profile, please try again later.",Toast.LENGTH_SHORT).show()
         }
     }
 
