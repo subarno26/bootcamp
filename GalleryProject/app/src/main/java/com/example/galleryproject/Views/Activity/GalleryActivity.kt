@@ -1,12 +1,10 @@
 package com.example.galleryproject.Views.Activity
 
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import com.example.galleryproject.R
 import com.example.galleryproject.Views.Fragments.*
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_gallery.*
 
 class   GalleryActivity : AppCompatActivity(){
@@ -21,7 +19,6 @@ class   GalleryActivity : AppCompatActivity(){
             beginTransaction().
             replace(R.id.container,categoryFragment)
             .commit()
-        val manager = supportFragmentManager
         navigationView.setOnNavigationItemSelectedListener {
             item ->
             when(item.itemId){
@@ -36,11 +33,11 @@ class   GalleryActivity : AppCompatActivity(){
                         .commit()
                 }
                 R.id.gallery_item -> {
-                    val categoryFragment =
+                    val categoriesFragment =
                         Categories()
                     supportFragmentManager.
                         beginTransaction().
-                        replace(R.id.container,categoryFragment)
+                        replace(R.id.container,categoriesFragment)
                         .addToBackStack(null)
                         .commit()
                 }
@@ -68,6 +65,8 @@ class   GalleryActivity : AppCompatActivity(){
         }
 
     }
+
+
 
 
 

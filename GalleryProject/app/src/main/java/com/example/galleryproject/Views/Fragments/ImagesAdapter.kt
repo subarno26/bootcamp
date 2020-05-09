@@ -1,17 +1,16 @@
 package com.example.galleryproject.Views.Fragments
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.galleryproject.R
 import com.squareup.picasso.Picasso
 
-class ImagesAdapter(val mContext: Context?, val imageCallbackListener: ImageCallbackListener) : RecyclerView.Adapter<ImagesAdapter.ImageHolder>() {
+class ImagesAdapter(private val mContext: Context?, private val imageCallbackListener: ImageCallbackListener) : RecyclerView.Adapter<ImagesAdapter.ImageHolder>() {
     private lateinit var mImageList: List<ImageModel>
     class ImageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var cImage : ImageView = itemView.findViewById(R.id.catImages)
@@ -35,9 +34,10 @@ class ImagesAdapter(val mContext: Context?, val imageCallbackListener: ImageCall
     }
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
-        Picasso.get().load(mImageList[position].downloadURL).into(holder.cImage)
+        Glide.with(mContext!!).load(mImageList[position].downloadURL).into(holder.cImage)
+        //Picasso.get().load(mImageList[position].downloadURL).into(holder.cImage)
         holder.itemView.setOnClickListener{
-            imageCallbackListener.onImageClick(mImageList[position].downloadURL,mImageList[position].CategoryName,mImageList[position].Timestamp)
+            imageCallbackListener.onImageClick(mImageList[position].downloadURL,mImageList[position].categoryName,mImageList[position].timestamp)
 
         }
     }

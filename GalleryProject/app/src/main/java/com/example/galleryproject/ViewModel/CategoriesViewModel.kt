@@ -13,30 +13,6 @@ class CategoriesViewModel : ViewModel(){
     private var mCategoryList: MutableLiveData<List<AddCategoryModel>> = MutableLiveData()
 
 
-//    fun loadData(): LiveData<List<AddCategoryModel>> {
-//        if (categoryList.size>0){
-//            categoryList.clear()
-//        }
-//        repository.loadData().addSnapshotListener(EventListener<QuerySnapshot>{ snapshot, exception ->
-//            if (exception!=null){
-//                return@EventListener
-//            }
-//            if (snapshot!=null){
-//                for(doc in snapshot.documentChanges){
-//                    val fetchedCategory =
-//                        AddCategoryModel(
-//                            doc.document.getString("categoryName")!!,
-//                            doc.document.getString("categoryImage")!!
-//                        )
-//                    categoryList.add(fetchedCategory)
-//                }
-//            }
-//
-//            mCategoryList.value = categoryList
-//
-//        })
-//        return mCategoryList
-//    }
 
     fun loadData(): LiveData<List<AddCategoryModel>> {
         repository.loadData()

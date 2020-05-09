@@ -4,23 +4,27 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.net.Uri
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.galleryproject.Model.Repository
 import com.example.galleryproject.Views.Fragments.ImageModel
 import com.example.galleryproject.Views.Fragments.LoadingDialog
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 
-//class CategoryImagesViewModel(val context: Application) : AndroidViewModel(context) {
-class CategoryImagesViewModel : ViewModel(){
+class CategoryImagesViewModel : ViewModel() {
     private val repository = Repository()
     private var mImageList : MutableLiveData<List<ImageModel>> = MutableLiveData()
+    private var photosStatus = MediatorLiveData<PhotoStatus>()
     //private val loadingDialog = LoadingDialog(context)
+
+    fun getPhotosStatus(): LiveData<PhotoStatus>{
+        return photosStatus
+    }
+
+
     fun loadImages(categoryName: String): LiveData<List<ImageModel>> {
-       //loadingDialog.startLoadingDialog("TEST")
+        //loadingDialog.startLoadingDialog("TEST")
         repository.loadImages(categoryName)
             .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
                 if (e != null) {
@@ -41,12 +45,32 @@ class CategoryImagesViewModel : ViewModel(){
                 mImageList.value = savedImagesList
                 //Log.d(TAG, savedImagesList.toString())
             })
-      //  loadingDialog.dismissDialog()
+        //loadingDialog.dismissDialog()
         return mImageList
 
     }
 
     fun storeImages(categoryName: String,uri: Uri){
-        return repository.storeImages(categoryName, uri)
+        photosStatus.value = PhotoStatus.SHOW_PROGRESS
+        photosStatus.addSource(
+            repository.storeImages(
+                categoryName, uri
+            ), Observer {
+                it.onSuccess{
+                    photosStatus.value = PhotoStatus.HIDE_PROGRESS
+                    Log.i("Images","HIDE")
+                }
+                it.onFailure{
+                    photosStatus.value = PhotoStatus.HIDE_PROGRESS
+                    Log.i("Images","SHOW")
+                }
+            }
+        )
+
+    }
+
+    enum class PhotoStatus{
+        SHOW_PROGRESS,
+        HIDE_PROGRESS
     }
 }

@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.CategoriesViewModel
 
-class Categories:Fragment(),CallbackListener {
+class Categories:Fragment(),CategoryCallbackListener {
+    private var viewModel = CategoriesViewModel()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,7 +22,7 @@ class Categories:Fragment(),CallbackListener {
         val view = inflater.inflate(R.layout.categories, container, false)
         val recyclerView = view.findViewById(R.id.recycler) as RecyclerView
         recyclerView.layoutManager = GridLayoutManager(context,3)
-        val viewModel =ViewModelProvider(this).get(CategoriesViewModel::class.java)
+        viewModel =ViewModelProvider(this).get(CategoriesViewModel::class.java)
         viewModel.loadData().observe(viewLifecycleOwner, Observer {
             val cCategoryAdapter =
                 CategoryAdapter(

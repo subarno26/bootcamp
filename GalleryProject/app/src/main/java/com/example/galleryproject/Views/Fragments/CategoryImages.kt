@@ -1,6 +1,5 @@
 package com.example.galleryproject.Views.Fragments
 
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -16,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,11 +24,12 @@ import com.example.galleryproject.ViewModel.CategoryImagesViewModel
 import kotlinx.android.synthetic.main.category_images.view.*
 import java.io.ByteArrayOutputStream
 
+@Suppress("DEPRECATION")
 class CategoryImages : Fragment(), ImageCallbackListener {
 
     private var categoryName:String ?= null
     private var loadingDialog:LoadingDialog ?= null
-    private  var viewmodel = CategoryImagesViewModel()
+    private  var viewModel = CategoryImagesViewModel()
     private lateinit var uri:Uri
     private lateinit var recycler : RecyclerView
     override fun onCreateView(
@@ -40,6 +41,8 @@ class CategoryImages : Fragment(), ImageCallbackListener {
         val bundle = this.arguments
         categoryName = bundle?.getString("catName").toString()
         view.textView.text = categoryName
+        viewModel = ViewModelProvider(this).get(CategoryImagesViewModel::class.java)
+        setObservers()
 
         recycler = view.findViewById(R.id.recyclerImages) as RecyclerView
         recycler.layoutManager = GridLayoutManager(this.context,3)
@@ -84,10 +87,28 @@ class CategoryImages : Fragment(), ImageCallbackListener {
         return view
     }
 
-    private fun loadImages() {
+    private fun setObservers() {
+        Log.i("IMAGES","observer called")
+        viewModel.getPhotosStatus().observe(viewLifecycleOwner, Observer {
+            when(it){
+                CategoryImagesViewModel.PhotoStatus.SHOW_PROGRESS -> showProgress()
+                CategoryImagesViewModel.PhotoStatus.HIDE_PROGRESS -> hideProgress()
+            }
+        })
+    }
 
-        viewmodel = ViewModelProvider(this).get(CategoryImagesViewModel::class.java)
-        viewmodel.loadImages(categoryName.toString()).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+    private fun hideProgress() {
+        Log.i("ImageFragment","hide progress")
+        loadingDialog!!.dismissDialog()
+    }
+
+    private fun showProgress() {
+        Log.i("ImageFragment","Showing progress")
+        loadingDialog!!.startLoadingDialog("Adding image")
+    }
+
+    private fun loadImages() {
+        viewModel.loadImages(categoryName.toString()).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             val imagesAdapter = ImagesAdapter(context, this)
             imagesAdapter.listChange(it)
             recycler.adapter = imagesAdapter
@@ -116,19 +137,19 @@ class CategoryImages : Fragment(), ImageCallbackListener {
         val bytes = ByteArrayOutputStream()
         photo.compress(Bitmap.CompressFormat.JPEG,100,bytes)
         val path: String = MediaStore.Images.Media.insertImage(
-            context?.getContentResolver(),
+            context?.contentResolver,
             photo,
             "Title",
             null
         )
-        val image = Uri.parse(path)
-        return image
+        return Uri.parse(path)
 
 
     }
 
     private fun storeImage() {
-        viewmodel.storeImages(categoryName!!,uri)
+
+        viewModel.storeImages(categoryName!!,uri)
         Toast.makeText(context,"Please wait while the image is being loaded.",Toast.LENGTH_LONG).show()
         loadingDialog!!.dismissDialog()
     }

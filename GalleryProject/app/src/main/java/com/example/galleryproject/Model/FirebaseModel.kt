@@ -2,6 +2,7 @@ package com.example.galleryproject.Model
 
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.example.galleryproject.*
 import com.example.galleryproject.Views.Fragments.AddCategoryModel
 import com.example.galleryproject.Views.Fragments.ImageModel
@@ -10,12 +11,14 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.util.*
 
+@Suppress("UNREACHABLE_CODE")
 class FirebaseModel {
     private val auth = FirebaseAuth.getInstance()
     private lateinit var storageRef: StorageReference
@@ -32,12 +35,11 @@ class FirebaseModel {
     }
 
     fun login(email: String, password: String): Task<AuthResult> {
-        val fAuth = auth.signInWithEmailAndPassword(email, password)
-        return fAuth
+        return auth.signInWithEmailAndPassword(email, password)
     }
 
-    fun signup(Name: String, Email: String, Password: String, uri: Uri?): Boolean {
-        auth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener() { task ->
+    fun signUp(Name: String, Email: String, Password: String, uri: Uri?): Boolean {
+        auth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 currentUID = auth.currentUser!!.uid
                 uploadImage(Name, Email, uri)
@@ -84,7 +86,7 @@ class FirebaseModel {
         collection.set(userModel).addOnSuccessListener {
             Log.e("FIREBASE MODEL ", "successful")
             //Toast.makeText(MainActivity(), "stored in db", Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener() {
+        }.addOnFailureListener {
             Log.e("Error", "$it")
         }
 
@@ -98,21 +100,34 @@ class FirebaseModel {
 
     }
 
-    fun addCategory(uri: Uri, categoryName: String):Boolean{
+    fun addCategory(uri: Uri, categoryName: String):MutableLiveData<Result<Boolean>>{
+        val result = MutableLiveData<Result<Boolean>>()
         val filename = UUID.randomUUID().toString()
         firestore = FirebaseFirestore.getInstance()
         storageRef = FirebaseStorage.getInstance().getReference("CategoryImages/$filename")
        storageRef.putFile(uri).addOnSuccessListener {
             storageRef.downloadUrl.addOnSuccessListener {
                 Log.d("Location", "$it")
-                uploadCategory(categoryName,it.toString())
+                uploadCategory(categoryName,it.toString()).addSnapshotListener{snapshot, exception ->
+                    if (exception!=null){
+                        return@addSnapshotListener
+                    }
+                    if (snapshot!=null){
+                        result.value = Result.success(true)
+                    }
+                    else{
+                        result.value = exception?.let { it1 -> Result.failure(it1) }
+                    }
+
+                }
             }
         }.addOnFailureListener {
             Log.e("Unable to upload", "$it")
         }
-        return true
+        return result
+
     }
-    private fun uploadCategory(categoryName: String, categoryImageID: String) {
+    private fun uploadCategory(categoryName: String, categoryImageID: String): DocumentReference {
         val userId = auth.uid.toString()
 
         val categoryInfo =
@@ -121,40 +136,49 @@ class FirebaseModel {
                 categoryImageID
             )
 
-        firestore.collection("UsersDetails").document(userId).collection("Categories").document(categoryName)
+        val documentReference:DocumentReference= firestore.collection("UsersDetails").document(userId)
+            documentReference.collection("Categories").document(categoryName)
             .set(categoryInfo)
-            .addOnSuccessListener {
-                Log.d("Firebasemodel ","Category uploaded successfully")
-            }.addOnFailureListener{
-                Log.e("Failed","$it")
-            }
+        return documentReference
+
     }
 
     fun loadImages(categoryName: String): CollectionReference {
         val uId = auth.uid.toString()
         firestore = FirebaseFirestore.getInstance()
-        val reference = firestore.collection("UsersDetails").document(uId)
+        return firestore.collection("UsersDetails").document(uId)
             .collection("Categories").document(categoryName)
             .collection("Category images")
-        return reference
     }
 
-    fun storeImages(categoryName: String,uri: Uri) {
+    fun storeImages(categoryName: String,uri: Uri) : MutableLiveData<Result<Boolean>>{
+        val result = MutableLiveData<Result<Boolean>>()
         val user = auth.uid.toString()
         val filename = UUID.randomUUID().toString()
         storageRef = FirebaseStorage.getInstance().getReference("CategoryImages/$user/$filename")
-        storageRef.putFile(uri).addOnSuccessListener {
+        storageRef.putFile(uri).addOnCompleteListener {
             storageRef.downloadUrl.addOnSuccessListener {
                 Log.d("Location", "$it")
                 //Toast.makeText(context,"Uploaded successfully",Toast.LENGTH_SHORT).show()
-                uploadToDatabase(it.toString(),categoryName)
+                uploadToDatabase(it.toString(),categoryName).addSnapshotListener{snapshot, exception ->
+                    if (exception!=null){
+                        return@addSnapshotListener
+                    }
+                    if (snapshot!= null){
+                        result.value = Result.success(true)
+                    }
+                    else{
+                        result.value = exception?.let { it1 -> Result.failure(it1) }
+                    }
+                }
             }
         }.addOnFailureListener{
             Log.e("Unable to upload","$it")
         }
+        return result
     }
 
-    private fun uploadToDatabase(file: String,categoryName: String) {
+    private fun uploadToDatabase(file: String,categoryName: String) : DocumentReference {
         val userId = auth.uid.toString()
         val calendar = Calendar.getInstance()
         val timestamp = calendar.timeInMillis.toString()
@@ -166,17 +190,12 @@ class FirebaseModel {
         )
 
 
-        firestore.collection("UsersDetails").document(userId)
-            .collection("Categories").document(categoryName)
+        val documentReference: DocumentReference = firestore.collection("UsersDetails").document(userId)
+            documentReference.collection("Categories").document(categoryName)
             .collection("Category images").document(timestamp)
             .set(imageInfo)
-            .addOnSuccessListener {
-                Log.d("Firebasemodel","Successfully uploaded.")
-                //Toast.makeText(context,"Image added successfully", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener{
-                Log.e("Failed","$it")
-            }
 
+        return documentReference
     }
 
     fun deleteImage(imageUrl: String, category:String, timestamp: String):Boolean{
@@ -214,37 +233,35 @@ class FirebaseModel {
         firestore = FirebaseFirestore.getInstance()
         val documentID = auth.uid.toString()
         Log.e("USERID",documentID)
-        val docref = firestore.collection("UsersDetails").document(documentID).get()
-        return docref
+        return firestore.collection("UsersDetails").document(documentID).get()
     }
 
     fun logout(){
         auth.signOut()
     }
 
-    fun updateUserImage(uri: Uri){
+    fun updateUserImage(uri: Uri): MutableLiveData<Result<Boolean>>{
+        val result = MutableLiveData<Result<Boolean>>()
         val filename = UUID.randomUUID().toString()
         storageRef = FirebaseStorage.getInstance().getReference("/images/$filename")
         storageRef.putFile(uri).addOnSuccessListener {
             // Toast.makeText(context, "Image uploaded successfully!", Toast.LENGTH_SHORT).show()
             storageRef.downloadUrl.addOnSuccessListener {
                 Log.d("Location", "$it")
-                updateDatabase(it.toString())
+                firestore = FirebaseFirestore.getInstance()
+                val docID = auth.uid.toString()
+                firestore.collection("UsersDetails").document(docID)
+                    .update("imageID",it.toString())
+                .addOnSuccessListener {
+                    result.value = Result.success(true)
+                }.addOnFailureListener{
+                        result.value = Result.failure(it)
+                    }
             }
         }.addOnFailureListener{
             Log.e("Unable to upload","$it")
         }
-    }
-
-    private fun updateDatabase(newImage: String) {
-        firestore = FirebaseFirestore.getInstance()
-        val docID = auth.uid.toString()
-        firestore.collection("UsersDetails").document(docID).update("imageID",newImage)
-            .addOnSuccessListener {
-            Log.i("Firebasemodel","Update successful!")
-        }.addOnFailureListener{
-            Log.e("Failure","$it")
-        }
+        return result
     }
 
     fun getTimeline(): StorageReference {

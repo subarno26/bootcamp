@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryproject.R
@@ -17,18 +16,21 @@ import kotlinx.android.synthetic.main.activity_main.*
 class LoginActivity : AppCompatActivity() {
     private var email:String ?= null
     private var password:String?=null
-    private lateinit var viewmodel: LoginViewModel
+    private var viewModel = LoginViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewmodel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        if (viewmodel.checkUserLogin()){
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        if (viewModel.checkUserLogin()){
             startActivity(Intent(this,
                 GalleryActivity::class.java))
         }
 
         signupText.setOnClickListener {
-            signup()
+            signUp()
+        }
+        loginBtn.setOnClickListener {
+            login()
         }
 
     }
@@ -39,31 +41,31 @@ class LoginActivity : AppCompatActivity() {
         password = passwordEdit.editText!!.text.toString()
 
         if (TextUtils.isEmpty(email)){
-            emailEdit.error = "Required field"
+            emailEdit.error = getString(R.string.required_field)
             valid = false
         }
         else if (TextUtils.isEmpty(password)){
-            passwordEdit.error = "Please enter password"
+            passwordEdit.error = getString(R.string.password_prompt)
             valid = false
         }
         return valid
     }
 
-    fun login(view: View) {
+    private fun login() {
         if (!validate()){
             return
         }
         val loadingDialog = LoadingDialog(this)
-        loadingDialog.startLoadingDialog("Signing in, please wait.")
-        viewmodel.login(email!!,password!!).addOnCompleteListener(this) { task ->
+        loadingDialog.startLoadingDialog(getString(R.string.sign_in_dialog))
+        viewModel.login(email!!,password!!).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     loadingDialog.dismissDialog()
-                    Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,getString(R.string.successful_sign_in),Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this,
                         GalleryActivity::class.java))
                 } else {
                     loadingDialog.dismissDialog()
-                    Toast.makeText(this,"Email id and password do not match",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,getString(R.string.email_pass_error),Toast.LENGTH_SHORT).show()
                     Log.e("ERROR", "signInWithEmail:failure", task.exception)
 
                 }
@@ -73,11 +75,12 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun signup() {
+    private fun signUp() {
         val manager = supportFragmentManager
         val transact = manager.beginTransaction()
         val sFragment = Signup()
         transact.replace(R.id.container,sFragment)
+        transact.addToBackStack(null)
         transact.commit()
     }
 
