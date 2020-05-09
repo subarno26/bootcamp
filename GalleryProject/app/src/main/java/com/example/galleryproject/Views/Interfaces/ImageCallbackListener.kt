@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views.Fragments
+package com.example.galleryproject.Views.Interfaces
 
 
 interface ImageCallbackListener {

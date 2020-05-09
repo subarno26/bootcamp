@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views.Fragments
+package com.example.galleryproject.Views.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.galleryproject.R
-import com.squareup.picasso.Picasso
+import com.example.galleryproject.Views.Models.AddCategoryModel
+import com.example.galleryproject.Views.Interfaces.CategoryCallbackListener
 
 class CategoryAdapter(private val categoryList: List<AddCategoryModel>, private val mContext: Context?, private val categoryCallbackListener: CategoryCallbackListener) : RecyclerView.Adapter<CategoryAdapter.MyHolder>() {
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

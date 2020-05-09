@@ -21,11 +21,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.CategoryImagesViewModel
+import com.example.galleryproject.Views.Adapters.ImagesAdapter
+import com.example.galleryproject.Views.Interfaces.ImageCallbackListener
 import kotlinx.android.synthetic.main.category_images.view.*
 import java.io.ByteArrayOutputStream
 
 @Suppress("DEPRECATION")
-class CategoryImages : Fragment(), ImageCallbackListener {
+class CategoryImages : Fragment(),
+    ImageCallbackListener {
 
     private var categoryName:String ?= null
     private var loadingDialog:LoadingDialog ?= null
@@ -109,7 +112,11 @@ class CategoryImages : Fragment(), ImageCallbackListener {
 
     private fun loadImages() {
         viewModel.loadImages(categoryName.toString()).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            val imagesAdapter = ImagesAdapter(context, this)
+            val imagesAdapter =
+                ImagesAdapter(
+                    context,
+                    this
+                )
             imagesAdapter.listChange(it)
             recycler.adapter = imagesAdapter
         })

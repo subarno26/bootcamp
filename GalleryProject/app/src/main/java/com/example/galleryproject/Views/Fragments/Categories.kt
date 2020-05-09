@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.CategoriesViewModel
+import com.example.galleryproject.Views.Adapters.CategoryAdapter
+import com.example.galleryproject.Views.Interfaces.CategoryCallbackListener
 
-class Categories:Fragment(),CategoryCallbackListener {
+class Categories:Fragment(),
+    CategoryCallbackListener {
     private var viewModel = CategoriesViewModel()
     override fun onCreateView(
         inflater: LayoutInflater,

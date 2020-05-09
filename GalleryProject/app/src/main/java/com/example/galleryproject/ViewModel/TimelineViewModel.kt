@@ -2,11 +2,10 @@ package com.example.galleryproject.ViewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.galleryproject.Model.Repository
-import com.example.galleryproject.Views.Fragments.TimelineModel
+import com.example.galleryproject.Views.Models.TimelineModel
 
 class TimelineViewModel :ViewModel(){
     private val repository = Repository()

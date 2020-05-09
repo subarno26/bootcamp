@@ -1,14 +1,10 @@
 package com.example.galleryproject.ViewModel
 
-import android.app.Activity
-import android.app.Application
-import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.galleryproject.Model.Repository
-import com.example.galleryproject.Views.Fragments.ImageModel
-import com.example.galleryproject.Views.Fragments.LoadingDialog
+import com.example.galleryproject.Views.Models.ImageModel
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 

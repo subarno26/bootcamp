@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.galleryproject.Model.Repository
-import com.example.galleryproject.Views.Fragments.AddCategoryModel
+import com.example.galleryproject.Views.Models.AddCategoryModel
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 
@@ -25,10 +25,10 @@ class CategoriesViewModel : ViewModel(){
                 val categoryList = mutableListOf<AddCategoryModel>()
                 for (doc in value!!) {
                     val fetchedCategory =
-                            AddCategoryModel(
-                                doc.getString("categoryName")!!,
-                                doc.getString("categoryImage")!!
-                            )
+                        AddCategoryModel(
+                            doc.getString("categoryName")!!,
+                            doc.getString("categoryImage")!!
+                        )
                     categoryList.add(fetchedCategory)
                 }
                 mCategoryList.value = categoryList

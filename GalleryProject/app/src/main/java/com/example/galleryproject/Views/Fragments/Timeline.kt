@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.TimelineViewModel
+import com.example.galleryproject.Views.Adapters.TimelineAdapter
 
 class Timeline:Fragment() {
     private var viewModel = TimelineViewModel()

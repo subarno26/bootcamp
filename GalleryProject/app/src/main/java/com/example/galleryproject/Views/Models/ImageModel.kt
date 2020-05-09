@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views.Fragments
+package com.example.galleryproject.Views.Models
 
 class ImageModel {
     val downloadURL: String

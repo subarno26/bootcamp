@@ -4,9 +4,9 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.galleryproject.*
-import com.example.galleryproject.Views.Fragments.AddCategoryModel
-import com.example.galleryproject.Views.Fragments.ImageModel
-import com.example.galleryproject.Views.Fragments.UserModel
+import com.example.galleryproject.Views.Models.AddCategoryModel
+import com.example.galleryproject.Views.Models.ImageModel
+import com.example.galleryproject.Views.Models.UserModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth

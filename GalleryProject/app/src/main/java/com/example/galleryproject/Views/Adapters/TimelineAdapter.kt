@@ -1,4 +1,4 @@
-package com.example.galleryproject.Views.Fragments
+package com.example.galleryproject.Views.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.galleryproject.R
-import com.squareup.picasso.Picasso
+import com.example.galleryproject.Views.Models.TimelineModel
 import java.text.SimpleDateFormat
 import java.util.*
 
