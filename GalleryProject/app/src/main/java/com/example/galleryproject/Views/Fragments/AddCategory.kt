@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.add_categories.*
 import kotlinx.android.synthetic.main.add_categories.view.*
 
 class AddCategory :Fragment(){
-    private var viewmodel = AddCategoryViewModel()
+    private var viewModel = AddCategoryViewModel()
     private var uri:Uri ?= null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,25 +35,25 @@ class AddCategory :Fragment(){
 
         view.addCategoryBtn.setOnClickListener {
             if (uri == null){
-                Toast.makeText(context,"Please select an image for the category",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,getString(R.string.select_image_for_category),Toast.LENGTH_SHORT).show()
             }
             else if (TextUtils.isEmpty(categoryEdit.editText!!.text)){
-                categoryEdit.error = "Please enter name of the category"
+                categoryEdit.error = getString(R.string.prompt_enter_category_name)
             }
             else {
                 val loadingDialog = LoadingDialog(activity!!)
-                loadingDialog.startLoadingDialog("Adding category, please wait.")
+                loadingDialog.startLoadingDialog(getString(R.string.adding_category_dialog))
                 val categoryName = categoryEdit.editText!!.text.toString()
-                viewmodel = ViewModelProvider(this).get(AddCategoryViewModel::class.java)
-                if (viewmodel.addCategory(uri!!,categoryName)){
+                viewModel = ViewModelProvider(this).get(AddCategoryViewModel::class.java)
+                if (viewModel.addCategory(uri!!,categoryName)){
                     loadingDialog.dismissDialog()
-                    activity!!.navigationView.menu.getItem(0).setChecked(true)
+                    activity!!.navigationView.menu.getItem(0).isChecked = true
                     val category =
                         Categories()
                     val transaction = activity!!.supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.container,category)
                     transaction.commit()
-                    Toast.makeText(context,"Adding category, please wait.",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,getString(R.string.adding_category_dialog),Toast.LENGTH_SHORT).show()
                 }
 
 

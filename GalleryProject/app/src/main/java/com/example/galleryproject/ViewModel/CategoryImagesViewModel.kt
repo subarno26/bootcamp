@@ -61,7 +61,7 @@ class CategoryImagesViewModel : ViewModel() {
                     Log.i("Images","HIDE")
                 }
                 it.onFailure{
-                    photosStatus.value = PhotoStatus.SHOW_PROGRESS
+                    photosStatus.value = PhotoStatus.HIDE_PROGRESS
                     Log.i("Images","SHOW")
                 }
             }

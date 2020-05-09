@@ -2,12 +2,12 @@ package com.example.galleryproject.Views.Fragments
 
 class ImageModel {
     val downloadURL: String
-    val Timestamp: String
-    val CategoryName :String
+    val timestamp: String
+    val categoryName :String
 
-    constructor(downloadURL: String, Timestamp: String,CategoryName :String) {
+    constructor(downloadURL: String, timestamp: String,categoryName :String) {
         this.downloadURL = downloadURL
-        this.Timestamp = Timestamp
-        this.CategoryName = CategoryName
+        this.timestamp = timestamp
+        this.categoryName = categoryName
     }
 }

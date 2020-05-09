@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/timeline"
-        android:textSize="34sp"
+        android:textSize="@dimen/font_34"
         android:textColor="@color/borderColor"
         android:fontFamily="@font/roboto"
         android:layout_marginTop="@dimen/margin_20"/>

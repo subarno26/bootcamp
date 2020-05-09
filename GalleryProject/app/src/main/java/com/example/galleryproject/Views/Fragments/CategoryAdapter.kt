@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.galleryproject.R
 import com.squareup.picasso.Picasso
 
-class CategoryAdapter(val categoryList: List<AddCategoryModel>, val mContext: Context?, val callbackListener: CallbackListener) : RecyclerView.Adapter<CategoryAdapter.MyHolder>() {
+class CategoryAdapter(private val categoryList: List<AddCategoryModel>, private val mContext: Context?, private val categoryCallbackListener: CategoryCallbackListener) : RecyclerView.Adapter<CategoryAdapter.MyHolder>() {
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var categoryImage: ImageView = itemView.findViewById(R.id.cImage)
@@ -34,10 +35,11 @@ class CategoryAdapter(val categoryList: List<AddCategoryModel>, val mContext: Co
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        holder.categoryName.setText(categoryList.get(position).categoryName)
-        Picasso.get().load(categoryList.get(position).categoryImage).into(holder.categoryImage)
+        holder.categoryName.text = categoryList[position].categoryName
+        Glide.with(mContext!!).load(categoryList[position].categoryImage).into(holder.categoryImage)
+        //Picasso.get().load(categoryList[position].categoryImage).into(holder.categoryImage)
         holder.itemView.setOnClickListener{
-            callbackListener.onItemClick(categoryList[position].categoryName)
+            categoryCallbackListener.onItemClick(categoryList[position].categoryName)
         }
     }
 }

@@ -1,5 +1,5 @@
 package com.example.galleryproject.Views.Fragments
 
-interface CallbackListener {
+interface CategoryCallbackListener {
     fun onItemClick(categoryName: String)
 }

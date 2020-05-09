@@ -11,17 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_20"
-        android:textSize="28sp"
+        android:textSize="@dimen/font_28"
         android:textColor="@color/borderColor"
         android:fontFamily="@font/roboto"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerImages"
@@ -37,7 +30,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:elevation="@dimen/padding_10"
-        android:layout_margin="20dp">
+        android:layout_margin="@dimen/margin_20">
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/chooseGallery"
             android:layout_width="wrap_content"
@@ -45,7 +38,7 @@
             app:fab_icon="@drawable/gallery2"
             app:fab_title="Gallery"
             app:fab_colorNormal="#ffff"
-            app:maxImageSize="48dp"/>
+            app:maxImageSize="@dimen/size_48"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/chooseCamera"

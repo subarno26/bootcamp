@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.expanded_image.view.*
 
 class ExpandedImage : Fragment() {
-    private var viewmodel = ExpandedImageViewModel()
+    private var viewModel = ExpandedImageViewModel()
     private var category:String ?= null
     private var timeStamp:String?= null
     override fun onCreateView(
@@ -35,8 +35,8 @@ class ExpandedImage : Fragment() {
     }
 
     private fun deleteImage(imageUrl: String) {
-        viewmodel = ViewModelProvider(this).get(ExpandedImageViewModel::class.java)
-        if (viewmodel.deleteImage(imageUrl,category!!,timeStamp!!)){
+        viewModel = ViewModelProvider(this).get(ExpandedImageViewModel::class.java)
+        if (viewModel.deleteImage(imageUrl,category!!,timeStamp!!)){
             Toast.makeText(context,"Deleted successfully",Toast.LENGTH_SHORT).show()
             val manager = activity!!.supportFragmentManager
             manager.popBackStack()

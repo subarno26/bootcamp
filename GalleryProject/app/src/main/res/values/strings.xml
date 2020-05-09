@@ -17,4 +17,12 @@
     <string name="sign_up_new">Sign up</string>
     <string name="register">Welcome aboard!</string>
     <string name="existing_user_text">Already on board? Sign in now!</string>
+    <string name="required_field">Required field</string>
+    <string name="password_prompt">Please enter password</string>
+    <string name="sign_in_dialog">Signing in, please wait.</string>
+    <string name="successful_sign_in">Signed in successfully</string>
+    <string name="email_pass_error">Email id and password do not match</string>
+    <string name="select_image_for_category">Please select an image for the category</string>
+    <string name="prompt_enter_category_name">Please enter name of the category</string>
+    <string name="adding_category_dialog">Adding category, please wait.</string>
 </resources>

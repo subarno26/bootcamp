@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.galleryproject.R
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
@@ -34,7 +35,8 @@ class TimelineAdapter(var timelineList: List<TimelineModel>, var mContext: Conte
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         timelineList[position].url.addOnSuccessListener {
-            Picasso.get().load(it).into(holder.image)
+            Glide.with(mContext!!).load(it).into(holder.image)
+            //Picasso.get().load(it).into(holder.image)
         }
         val formatter = SimpleDateFormat("MMM dd,yyyy")
         val timeDD = formatter.format(Date(timelineList[position].timestamp))

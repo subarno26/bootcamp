@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.CategoriesViewModel
 
-class Categories:Fragment(),CallbackListener {
+class Categories:Fragment(),CategoryCallbackListener {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

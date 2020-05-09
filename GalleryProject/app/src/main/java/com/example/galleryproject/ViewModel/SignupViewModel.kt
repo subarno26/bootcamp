@@ -7,8 +7,8 @@ import com.example.galleryproject.Model.Repository
 class SignupViewModel:ViewModel() {
     private val repository = Repository()
 
-    fun signup(Name:String, Email:String, Password:String, uri: Uri?): Boolean {
-        return repository.signup(Name, Email, Password, uri)
+    fun signUp(Name:String, Email:String, Password:String, uri: Uri?): Boolean {
+        return repository.signUp(Name, Email, Password, uri)
 
     }
 

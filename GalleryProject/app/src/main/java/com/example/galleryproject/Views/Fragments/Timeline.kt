@@ -13,7 +13,8 @@ import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.TimelineViewModel
 
 class Timeline:Fragment() {
-    private var viewmodel = TimelineViewModel()
+    private var viewModel = TimelineViewModel()
+    private var loadingDialog:LoadingDialog ?= null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,10 +22,11 @@ class Timeline:Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.timeline,container,false)
         val recyclerView = view.findViewById(R.id.timelineRecycler) as RecyclerView
-
+        setObservers()
+        loadingDialog = LoadingDialog(activity!!)
         recyclerView.layoutManager = GridLayoutManager(context,3,GridLayoutManager.VERTICAL,false)
-        viewmodel = ViewModelProvider(this).get(TimelineViewModel::class.java)
-        viewmodel.getTimeline().observe(viewLifecycleOwner, Observer {
+        viewModel = ViewModelProvider(this).get(TimelineViewModel::class.java)
+        viewModel.getTimeline().observe(viewLifecycleOwner, Observer {
             val tAdapter =
                 TimelineAdapter(
                     it,
@@ -34,5 +36,22 @@ class Timeline:Fragment() {
         })
 
         return view
+    }
+
+    private fun setObservers() {
+        viewModel.getTimelineStatus().observe(viewLifecycleOwner, Observer {
+            when(it){
+                TimelineViewModel.TimelineProgress.SHOW_PROGRESS -> showProgress()
+                TimelineViewModel.TimelineProgress.HIDE_PROGRESS -> hideProgress()
+            }
+        })
+    }
+
+    private fun showProgress() {
+        loadingDialog!!.startLoadingDialog("Loading your timeline")
+    }
+
+    private fun hideProgress() {
+        loadingDialog!!.dismissDialog()
     }
 }

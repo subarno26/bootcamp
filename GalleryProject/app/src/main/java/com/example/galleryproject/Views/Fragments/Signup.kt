@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.signup.*
 import kotlinx.android.synthetic.main.signup.view.*
 
 class Signup : Fragment(){
-    private var viewmodel = SignupViewModel()
+    private var viewModel = SignupViewModel()
     private var sName:String ?= null
     private var sEmail:String?= null
     private var sPass:String?= null
@@ -30,13 +30,13 @@ class Signup : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.signup,container,false)
-        viewmodel = ViewModelProvider(this).get(SignupViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SignupViewModel::class.java)
         view.sSignup.setOnClickListener {
             if (!sValidate()){
 //                sValidate()
             }
             else {
-                if (viewmodel.signup(sName!!,sEmail!!,sPass!!,uri)) {
+                if (viewModel.signUp(sName!!,sEmail!!,sPass!!,uri)) {
                     val intent = Intent(context,
                         GalleryActivity::class.java)
                     startActivity(intent)
