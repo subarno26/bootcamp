@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.example.galleryproject.R
 import com.example.galleryproject.ViewModel.ProfileViewModel
 import com.example.galleryproject.Views.Activity.LoginActivity
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.profile.*
 import kotlinx.android.synthetic.main.profile.view.*
 
@@ -114,7 +113,6 @@ class Profile : Fragment() {
                 username.text = document.getString("username")
                 userEmail.text = document.getString("emailID")
                 Glide.with(this).load(document.getString("imageID")).into(profile_image)
-//                Picasso.get().load(document.getString("imageID")).into(profile_image)
                 loadingDialog!!.dismissDialog()
                 progressImage.visibility = View.GONE
             } else {

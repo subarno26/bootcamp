@@ -36,7 +36,6 @@ class TimelineAdapter(var timelineList: List<TimelineModel>, var mContext: Conte
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         timelineList[position].url.addOnSuccessListener {
             Glide.with(mContext!!).load(it).into(holder.image)
-            //Picasso.get().load(it).into(holder.image)
         }
         val formatter = SimpleDateFormat("MMM dd,yyyy")
         val timeDD = formatter.format(Date(timelineList[position].timestamp))

@@ -38,7 +38,6 @@ class CategoryAdapter(private val categoryList: List<AddCategoryModel>, private 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.categoryName.text = categoryList[position].categoryName
         Glide.with(mContext!!).load(categoryList[position].categoryImage).into(holder.categoryImage)
-        //Picasso.get().load(categoryList[position].categoryImage).into(holder.categoryImage)
         holder.itemView.setOnClickListener{
             categoryCallbackListener.onItemClick(categoryList[position].categoryName)
         }

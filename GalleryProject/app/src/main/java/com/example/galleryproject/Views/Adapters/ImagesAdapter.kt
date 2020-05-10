@@ -36,7 +36,6 @@ class ImagesAdapter(private val mContext: Context?, private val imageCallbackLis
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
         Glide.with(mContext!!).load(mImageList[position].downloadURL).into(holder.cImage)
-        //Picasso.get().load(mImageList[position].downloadURL).into(holder.cImage)
         holder.itemView.setOnClickListener{
             imageCallbackListener.onImageClick(mImageList[position].downloadURL,mImageList[position].categoryName,mImageList[position].timestamp)
 
