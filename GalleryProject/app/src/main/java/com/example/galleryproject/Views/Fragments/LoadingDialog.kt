@@ -17,7 +17,9 @@ class LoadingDialog(activity: Activity) {
         val text =view.progressText
         text.text = dialogMessage
         builder.setView(view)
+        builder.setCancelable(false)
         dialog = builder.create()
+        dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
     fun dismissDialog(){

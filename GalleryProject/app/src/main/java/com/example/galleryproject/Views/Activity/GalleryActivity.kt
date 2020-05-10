@@ -3,6 +3,7 @@ package com.example.galleryproject.Views.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.galleryproject.R
 import com.example.galleryproject.Views.Fragments.*
 import kotlinx.android.synthetic.main.activity_gallery.*
@@ -62,6 +63,42 @@ class   GalleryActivity : AppCompatActivity(){
 
             }
             true
+        }
+
+    }
+
+    override fun onBackPressed() {
+        Log.i("LOG","BACK PRESS")
+        val manager = supportFragmentManager
+        Log.i("BACKSTACK COUNT",manager.backStackEntryCount.toString())
+
+        if (manager.backStackEntryCount > 0){
+            super.onBackPressed()
+            val currentFragment = manager.findFragmentById(R.id.container)
+            Log.i("CURRENT FRAGMENT",currentFragment.toString())
+            when (currentFragment) {
+                is Categories -> {
+                    navigationView.menu.getItem(0).isChecked = true
+                    Log.i("Timeline","Selected")
+                }
+                is CategoryImages -> {
+                    navigationView.menu.getItem(0).isChecked = true
+                }
+                is ExpandedImage -> {
+                    navigationView.menu.getItem(0).isChecked = true
+                }
+                is Timeline -> {
+                    navigationView.menu.getItem(1).isChecked = true
+                }
+                is AddCategory -> {
+                    navigationView.menu.getItem(2).isChecked = true
+                }
+                is Profile -> {
+                    navigationView.menu.getItem(3).isChecked = true
+                }
+            }
+
+
         }
 
     }
