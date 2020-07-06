@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">RoomExample</string>
+    <string name="employee_id">Employee ID</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last name</string>
+    <string name="city">City</string>
+    <string name="save">Save</string>
+    <string name="fetch">Fetch</string>
+    <string name="search_by_name">Search by name</string>
+    <string name="search">Search</string>
+    <string name="remember_me">Remember me</string>
+</resources>

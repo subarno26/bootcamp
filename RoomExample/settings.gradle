@@ -1,0 +1,3 @@
+include ':sharedpref'
+rootProject.name='RoomExample'
+include ':app'
