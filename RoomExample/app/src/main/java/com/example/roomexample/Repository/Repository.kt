@@ -7,5 +7,5 @@ import com.example.roomexample.Room.EmployeeDao
 class Repository(private val employeeDao: EmployeeDao) {
     val employeeList:LiveData<List<Employee>> = employeeDao.listAll()
     fun insert(employee: Employee) = employeeDao.insertAll(employee)
-    fun findByName(firstName:String) = employeeDao.getByName(firstName)
+    fun findByName(firstName:String) : LiveData<Employee> = employeeDao.getByName(firstName)
 }

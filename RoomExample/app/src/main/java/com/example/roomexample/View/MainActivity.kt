@@ -13,6 +13,9 @@ import com.example.roomexample.R
 import com.example.roomexample.Room.Employee
 import com.example.roomexample.ViewModel.EmployeeViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: EmployeeViewModel
@@ -21,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(EmployeeViewModel::class.java)
 
+        //SETTING OBSERVERS FOR LISTENING TO CHANGES
+        setObservers()
+
         getDetails()
 
         btn_save.setOnClickListener {
@@ -28,14 +34,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_fetch.setOnClickListener {
-            fetchDetails()
+            //fetchDetails()
         }
 
         btn_search.setOnClickListener {
             findByName()
         }
+TODO("Not yet implemented")
 
 
+    }
+
+    private fun setObservers() {
+        viewModel.employeeList.observe(this, Observer {
+            val fetchedList = it
+            Log.i("FETCHED LIST",fetchedList.toString())
+        })
 
     }
 
@@ -48,20 +62,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun findByName() {
-        Thread {
-            val fName = et_search.text.toString()
-            val fetched = viewModel.getByName(fName)
-            Log.i("Fetched", fetched.toString())
-        }.start()
+        val fName = et_search.text.toString()
+        if(TextUtils.isEmpty(fName)){
+            Toast.makeText(this,"Search field cannot be left empty",Toast.LENGTH_SHORT).show()
+        }
+        else {
+                val fetched = viewModel.getByName(fName).observe(this, Observer {
+                  Log.i("TAG",it.toString())
+                })
+                Log.i("Fetched", fetched.toString())
+        }
     }
 
-    private fun fetchDetails() {
-        viewModel.employeeList.observe(this, Observer {
-            Log.i("LIST",it.toString())
-            val eList = it
-            Log.i("ELIST",eList.toString())
-        })
-    }
+//    private fun fetchDetails() {
+//        viewModel.employeeList.observe(this, Observer {
+//            Log.i("LIST",it.toString())
+//            val eList = it
+//            Log.i("ELIST",eList.toString())
+//        })
+//    }
 
     private fun saveEntries() {
 
@@ -79,7 +98,7 @@ class MainActivity : AppCompatActivity() {
             if (checkBox.isChecked){
                 setSharedPreferences(eID,firstName,lastName,city)
             }
-            Thread {
+
                 val employeeDetails = Employee(
                     eID,
                     firstName,
@@ -87,7 +106,6 @@ class MainActivity : AppCompatActivity() {
                     city
                 )
                 viewModel.insert(employeeDetails)
-            }.start()
             Toast.makeText(this,"Data save successful.",Toast.LENGTH_SHORT).show()
         }
     }

@@ -18,5 +18,5 @@ interface EmployeeDao{
     fun delete(employee: Employee)
 
     @Query("SELECT * FROM EMPLOYEE WHERE firstName like :firstName")
-    fun getByName(firstName:String): Employee
+    fun getByName(firstName:String): LiveData<Employee>
 }

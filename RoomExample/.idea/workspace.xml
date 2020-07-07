@@ -46,7 +46,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GalleryProject" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -189,6 +189,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="203" y="131" width="950" height="530" key="#PSD/0.27.1366.741@0.27.1366.741" timestamp="1594030785247" />
+    <state x="366" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1594106315378">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="366" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.27.1366.741@0.27.1366.741" timestamp="1594106315378" />
     <state x="435" y="38" width="536" height="717" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1594030036814">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -197,26 +201,26 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="532" y="211" width="292" height="370" key="AndroidCreateXmlResourceDialog/0.27.1366.741@0.27.1366.741" timestamp="1594031414989" />
-    <state x="466" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1594029870932">
+    <state x="466" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1594123238691">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="466" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1594029870932" />
-    <state width="1320" height="175" key="GridCell.Tab.0.bottom" timestamp="1594033072979">
+    <state x="466" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1594123238691" />
+    <state width="1320" height="175" key="GridCell.Tab.0.bottom" timestamp="1594124344057">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1594033072979" />
-    <state width="1320" height="175" key="GridCell.Tab.0.center" timestamp="1594033072978">
+    <state width="1320" height="175" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1594124344057" />
+    <state width="1320" height="175" key="GridCell.Tab.0.center" timestamp="1594124344057">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1594033072978" />
-    <state width="1320" height="175" key="GridCell.Tab.0.left" timestamp="1594033072978">
+    <state width="1320" height="175" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1594124344057" />
+    <state width="1320" height="175" key="GridCell.Tab.0.left" timestamp="1594124344057">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1594033072978" />
-    <state width="1320" height="175" key="GridCell.Tab.0.right" timestamp="1594033072978">
+    <state width="1320" height="175" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1594124344057" />
+    <state width="1320" height="175" key="GridCell.Tab.0.right" timestamp="1594124344057">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1594033072978" />
+    <state width="1320" height="175" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1594124344057" />
     <state width="1320" height="219" key="GridCell.Tab.1.bottom" timestamp="1594025305866">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

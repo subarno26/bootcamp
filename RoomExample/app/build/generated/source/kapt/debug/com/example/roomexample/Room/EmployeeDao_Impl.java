@@ -131,7 +131,7 @@ public final class EmployeeDao_Impl implements EmployeeDao {
   }
 
   @Override
-  public Employee getByName(final String firstName) {
+  public LiveData<Employee> getByName(final String firstName) {
     final String _sql = "SELECT * FROM EMPLOYEE WHERE firstName like ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -140,31 +140,39 @@ public final class EmployeeDao_Impl implements EmployeeDao {
     } else {
       _statement.bindString(_argIndex, firstName);
     }
-    __db.assertNotSuspendingTransaction();
-    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
-    try {
-      final int _cursorIndexOfEId = CursorUtil.getColumnIndexOrThrow(_cursor, "eId");
-      final int _cursorIndexOfFirstName = CursorUtil.getColumnIndexOrThrow(_cursor, "firstName");
-      final int _cursorIndexOfLastName = CursorUtil.getColumnIndexOrThrow(_cursor, "lastName");
-      final int _cursorIndexOfCity = CursorUtil.getColumnIndexOrThrow(_cursor, "city");
-      final Employee _result;
-      if(_cursor.moveToFirst()) {
-        final int _tmpEId;
-        _tmpEId = _cursor.getInt(_cursorIndexOfEId);
-        final String _tmpFirstName;
-        _tmpFirstName = _cursor.getString(_cursorIndexOfFirstName);
-        final String _tmpLastName;
-        _tmpLastName = _cursor.getString(_cursorIndexOfLastName);
-        final String _tmpCity;
-        _tmpCity = _cursor.getString(_cursorIndexOfCity);
-        _result = new Employee(_tmpEId,_tmpFirstName,_tmpLastName,_tmpCity);
-      } else {
-        _result = null;
+    return __db.getInvalidationTracker().createLiveData(new String[]{"EMPLOYEE"}, false, new Callable<Employee>() {
+      @Override
+      public Employee call() throws Exception {
+        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+        try {
+          final int _cursorIndexOfEId = CursorUtil.getColumnIndexOrThrow(_cursor, "eId");
+          final int _cursorIndexOfFirstName = CursorUtil.getColumnIndexOrThrow(_cursor, "firstName");
+          final int _cursorIndexOfLastName = CursorUtil.getColumnIndexOrThrow(_cursor, "lastName");
+          final int _cursorIndexOfCity = CursorUtil.getColumnIndexOrThrow(_cursor, "city");
+          final Employee _result;
+          if(_cursor.moveToFirst()) {
+            final int _tmpEId;
+            _tmpEId = _cursor.getInt(_cursorIndexOfEId);
+            final String _tmpFirstName;
+            _tmpFirstName = _cursor.getString(_cursorIndexOfFirstName);
+            final String _tmpLastName;
+            _tmpLastName = _cursor.getString(_cursorIndexOfLastName);
+            final String _tmpCity;
+            _tmpCity = _cursor.getString(_cursorIndexOfCity);
+            _result = new Employee(_tmpEId,_tmpFirstName,_tmpLastName,_tmpCity);
+          } else {
+            _result = null;
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+        }
       }
-      return _result;
-    } finally {
-      _cursor.close();
-      _statement.release();
-    }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    });
   }
 }

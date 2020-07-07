@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-RoomExample.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-RoomExample.iml" group="RoomExample" />
       <module fileurl="file://$PROJECT_DIR$/RoomExample.iml" filepath="$PROJECT_DIR$/RoomExample.iml" group="RoomExample" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="RoomExample/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sharedpref/sharedpref.iml" filepath="$PROJECT_DIR$/.idea/modules/sharedpref/sharedpref.iml" group="RoomExample/sharedpref" />
