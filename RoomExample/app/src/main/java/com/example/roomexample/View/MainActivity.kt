@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.roomexample.R
 import com.example.roomexample.Room.Employee
 import com.example.roomexample.ViewModel.EmployeeViewModel
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: EmployeeViewModel
@@ -28,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         setObservers()
 
         getDetails()
-
         btn_save.setOnClickListener {
             saveEntries()
         }
@@ -40,9 +41,6 @@ class MainActivity : AppCompatActivity() {
         btn_search.setOnClickListener {
             findByName()
         }
-TODO("Not yet implemented")
-
-
     }
 
     private fun setObservers() {
@@ -59,6 +57,7 @@ TODO("Not yet implemented")
         et_firstName.setText(getSp.getString("firstName",""))
         et_lastName.setText(getSp.getString("lastName",""))
         et_city.setText(getSp.getString("city",""))
+
     }
 
     private fun findByName() {
@@ -67,20 +66,17 @@ TODO("Not yet implemented")
             Toast.makeText(this,"Search field cannot be left empty",Toast.LENGTH_SHORT).show()
         }
         else {
-                val fetched = viewModel.getByName(fName).observe(this, Observer {
-                  Log.i("TAG",it.toString())
-                })
+            //working code with coroutines
+            val fetched = runBlocking {viewModel.getByName(fName)}
+            if (fetched == null){
+               Toast.makeText(this,"Entry does not exist",Toast.LENGTH_SHORT).show()
+            }
+            else {
                 Log.i("Fetched", fetched.toString())
+            }
         }
     }
 
-//    private fun fetchDetails() {
-//        viewModel.employeeList.observe(this, Observer {
-//            Log.i("LIST",it.toString())
-//            val eList = it
-//            Log.i("ELIST",eList.toString())
-//        })
-//    }
 
     private fun saveEntries() {
 

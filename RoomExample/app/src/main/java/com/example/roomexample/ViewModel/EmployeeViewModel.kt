@@ -3,11 +3,11 @@ package com.example.roomexample.ViewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.roomexample.Repository.Repository
 import com.example.roomexample.Room.Employee
 import com.example.roomexample.Room.EmployeeDatabase
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -27,14 +27,20 @@ class EmployeeViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun getByName(firstName:String) : LiveData<Employee>{
-        return repository.findByName(firstName)
+    //Getting deferred result from repo and conversion
+    suspend fun getByName(firstName:String): Employee {
+    return repository.findByName(firstName).await()
     }
 
-//    The coroutine code which did not work, because we needed to return a value
-//    fun getByName(firstName:String) = viewModelScope.launch(Dispatchers.IO){
-//        repository.findByName(firstName)
+    //Code still giving the main thread exception
+//    suspend fun getByName(firstName:String): Employee {
+//        return viewModelScope.async { repository.findByName(firstName) }.await()
 //    }
+
+   fun deleteEntry(employee: Employee) = viewModelScope.launch {
+       repository.deleteEntry(employee)
+   }
+
 
 
 }
