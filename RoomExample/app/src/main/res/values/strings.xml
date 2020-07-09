@@ -9,4 +9,8 @@
     <string name="search_by_name">Search by name</string>
     <string name="search">Search</string>
     <string name="remember_me">Remember me</string>
+    <string name="emp_id">4150</string>
+    <string name="subarno_chatterjee">Subarno Chatterjee</string>
+    <string name="new_delhi">New Delhi</string>
+    <string name="space"> %s </string>
 </resources>

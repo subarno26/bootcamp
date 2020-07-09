@@ -2,7 +2,9 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <device id="pixel_xl" />
+      </config>
     </shared>
   </component>
   <component name="AndroidLogFilters">
@@ -35,6 +37,7 @@
         <option value="Kotlin File" />
         <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -54,10 +57,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.example.roomexample.Util" />
+      <recent name="com.example.roomexample.Adapter" />
       <recent name="com.example.roomexample.View" />
       <recent name="com.example.roomexample.Repository" />
       <recent name="com.example.roomexample.ViewModel" />
-      <recent name="com.example.roomexample.Room" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -189,38 +193,50 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="203" y="131" width="950" height="530" key="#PSD/0.27.1366.741@0.27.1366.741" timestamp="1594030785247" />
+    <state x="457" y="115" width="442" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1594275847178">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="457" y="115" width="442" height="562" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1594275847178" />
     <state x="366" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1594106315378">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="366" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.27.1366.741@0.27.1366.741" timestamp="1594106315378" />
-    <state x="435" y="38" width="536" height="717" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1594030036814">
+    <state x="435" y="38" width="536" height="717" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1594293558582">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="435" y="38" width="536" height="717" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.27.1366.741@0.27.1366.741" timestamp="1594030036814" />
-    <state x="532" y="211" width="292" height="370" key="AndroidCreateXmlResourceDialog" timestamp="1594031414989">
+    <state x="435" y="38" width="536" height="717" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.27.1366.741@0.27.1366.741" timestamp="1594293558582" />
+    <state x="266" y="154" width="824" height="484" key="AndroidCreateResourceDirectoryDialog" timestamp="1594278411279">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="532" y="211" width="292" height="370" key="AndroidCreateXmlResourceDialog/0.27.1366.741@0.27.1366.741" timestamp="1594031414989" />
+    <state x="266" y="154" width="824" height="484" key="AndroidCreateResourceDirectoryDialog/0.27.1366.741@0.27.1366.741" timestamp="1594278411279" />
+    <state x="266" y="154" width="824" height="484" key="AndroidCreateResourceFileDialog" timestamp="1594278427844">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="266" y="154" width="824" height="484" key="AndroidCreateResourceFileDialog/0.27.1366.741@0.27.1366.741" timestamp="1594278427844" />
+    <state x="532" y="211" width="292" height="370" key="AndroidCreateXmlResourceDialog" timestamp="1594274471407">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="532" y="211" width="292" height="370" key="AndroidCreateXmlResourceDialog/0.27.1366.741@0.27.1366.741" timestamp="1594274471407" />
     <state x="466" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1594203514859">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="466" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1594203514859" />
-    <state width="1320" height="175" key="GridCell.Tab.0.bottom" timestamp="1594210160092">
+    <state width="1320" height="175" key="GridCell.Tab.0.bottom" timestamp="1594288103144">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1594210160092" />
-    <state width="1320" height="175" key="GridCell.Tab.0.center" timestamp="1594210160084">
+    <state width="1320" height="175" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1594288103144" />
+    <state width="1320" height="175" key="GridCell.Tab.0.center" timestamp="1594288103143">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1594210160084" />
-    <state width="1320" height="175" key="GridCell.Tab.0.left" timestamp="1594210160083">
+    <state width="1320" height="175" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1594288103143" />
+    <state width="1320" height="175" key="GridCell.Tab.0.left" timestamp="1594288103142">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1594210160083" />
-    <state width="1320" height="175" key="GridCell.Tab.0.right" timestamp="1594210160091">
+    <state width="1320" height="175" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1594288103142" />
+    <state width="1320" height="175" key="GridCell.Tab.0.right" timestamp="1594288103144">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="175" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1594210160091" />
+    <state width="1320" height="175" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1594288103144" />
     <state width="1320" height="219" key="GridCell.Tab.1.bottom" timestamp="1594025305866">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

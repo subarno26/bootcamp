@@ -1,10 +1,10 @@
-package com.example.roomexample.Room
+package com.example.roomexample.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity
+@Entity(tableName = "EmployeeTable")
 data class Employee(
     @PrimaryKey
     val eId: Int,

@@ -5,11 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.roomexample.Repository.Repository
-import com.example.roomexample.Room.Employee
-import com.example.roomexample.Room.EmployeeDatabase
-import kotlinx.coroutines.Deferred
+import com.example.roomexample.room.Employee
+import com.example.roomexample.room.EmployeeDatabase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class EmployeeViewModel(application: Application) : AndroidViewModel(application) {
@@ -37,9 +35,13 @@ class EmployeeViewModel(application: Application) : AndroidViewModel(application
 //        return viewModelScope.async { repository.findByName(firstName) }.await()
 //    }
 
-   fun deleteEntry(employee: Employee) = viewModelScope.launch {
+   fun deleteEntry(employee: Employee) = viewModelScope.launch(Dispatchers.IO) {
        repository.deleteEntry(employee)
    }
+
+    fun deleteAllEntries() = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteAll()
+    }
 
 
 
